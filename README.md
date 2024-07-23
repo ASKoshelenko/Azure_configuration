@@ -10,6 +10,7 @@ This project sets up an Azure infrastructure using Terraform, including a virtua
 
 ## Project Structure
 ```.
+.
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
@@ -22,7 +23,11 @@ This project sets up an Azure infrastructure using Terraform, including a virtua
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   └── outputs.tf
-│   └── database/
+│   ├── database/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── storage/
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
