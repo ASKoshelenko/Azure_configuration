@@ -13,3 +13,11 @@ output "storage_container_name" {
 output "mysql_server_fqdn" {
   value = module.database.mysql_server_fqdn
 }
+
+output "monitoring_vm_public_ip" {
+  value = module.monitoring.monitoring_vm_public_ip
+}
+
+output "monitoring_vm_private_ip" {
+  value = module.monitoring.monitoring_vm_private_ip
+}

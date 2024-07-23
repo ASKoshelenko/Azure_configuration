@@ -38,3 +38,8 @@ variable "mysql_version" {
   description = "The version of MySQL to use"
   default     = "8.0.21"
 }
+
+variable "ssh_public_key" {
+  description = "The public SSH key to use for VMs"
+  type        = string
+}

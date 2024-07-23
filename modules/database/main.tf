@@ -7,6 +7,9 @@ resource "azurerm_mysql_flexible_server" "mysql" {
   backup_retention_days  = 7
   sku_name               = var.mysql_sku_name
   version                = var.mysql_version
+  lifecycle {
+    ignore_changes = [zone]
+  }
 }
 
 resource "azurerm_mysql_flexible_database" "db" {

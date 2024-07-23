@@ -45,3 +45,14 @@ module "database" {
   mysql_sku_name        = var.mysql_sku_name
   mysql_version         = var.mysql_version
 }
+
+module "monitoring" {
+  source              = "./modules/monitoring"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  subnet_id           = module.network.subnet_id
+  project_name        = var.project_name
+  environment         = var.environment
+  admin_username      = var.admin_username
+  ssh_public_key      = var.ssh_public_key
+}
