@@ -26,6 +26,14 @@ module "vm" {
   vm_size             = var.vm_size
 }
 
+module "storage" {
+  source              = "./modules/storage"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  project_name        = var.project_name
+  environment         = var.environment
+}
+
 module "database" {
   source                = "./modules/database"
   resource_group_name   = azurerm_resource_group.rg.name

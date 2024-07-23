@@ -1,5 +1,5 @@
 location              = "North Europe"
-project_name          = "myproject"
+project_name          = "itmarathon"
 environment           = "dev"
 admin_username        = "azureuser"
 vm_size               = "Standard_B1s"
