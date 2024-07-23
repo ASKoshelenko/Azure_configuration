@@ -9,7 +9,7 @@ This project sets up an Azure infrastructure using Terraform, including a virtua
 - An active Azure subscription
 
 ## Project Structure
-.
+```.
 ├── main.tf
 ├── variables.tf
 ├── outputs.tf
@@ -29,7 +29,7 @@ This project sets up an Azure infrastructure using Terraform, including a virtua
 ├── terraform.tfvars
 ├── README.md
 └── .gitignore
-
+```
 
 ## Configuration
 
