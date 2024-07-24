@@ -28,7 +28,12 @@ variable "admin_username" {
   type        = string
 }
 
-variable "ssh_public_key" {
-  description = "The public SSH key to use for the monitoring VM"
+variable "admin_ssh_key" {
+  description = "The public SSH key for the VM"
+  type        = string
+}
+
+variable "public_ip_id" {
+  description = "ID of the public IP to associate with the VM"
   type        = string
 }

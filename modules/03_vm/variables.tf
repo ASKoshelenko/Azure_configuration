@@ -25,3 +25,13 @@ variable "admin_username" {
 variable "vm_size" {
   description = "Size of the virtual machine"
 }
+
+variable "public_ip_id" {
+  description = "The ID of the public IP address to associate with the VM"
+  type        = string
+}
+
+variable "admin_ssh_key" {
+  description = "The public SSH key for the VM"
+  type        = string
+}

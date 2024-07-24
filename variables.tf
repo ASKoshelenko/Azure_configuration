@@ -1,45 +1,110 @@
 variable "location" {
   description = "The Azure region where resources will be created"
+  type        = string
   default     = "North Europe"
 }
 
 variable "project_name" {
   description = "Name of the project, used in resource names"
+  type        = string
 }
 
 variable "environment" {
   description = "Environment (dev, test, prod)"
-}
-
-variable "admin_username" {
-  description = "Username for the VM"
-}
-
-variable "vm_size" {
-  description = "Size of the virtual machine"
-  default     = "Standard_B1s"
-}
-
-variable "mysql_admin_username" {
-  description = "Username for MySQL admin"
-}
-
-variable "mysql_admin_password" {
-  description = "Password for MySQL admin"
-  sensitive   = true
-}
-
-variable "mysql_sku_name" {
-  description = "The SKU Name for the MySQL Flexible Server"
-  default     = "B_Standard_B1s"
-}
-
-variable "mysql_version" {
-  description = "The version of MySQL to use"
-  default     = "8.0.21"
-}
-
-variable "ssh_public_key" {
-  description = "The public SSH key to use for VMs"
   type        = string
+}
+
+variable "vnet_address_space" {
+  description = "Address space for the virtual network"
+  type        = list(string)
+  default     = ["10.0.0.0/16"]
+}
+
+variable "subnet_address_prefixes" {
+  description = "Address prefixes for the subnet"
+  type        = list(string)
+  default     = ["10.0.1.0/24"]
+}
+
+variable "db_subnet_address_prefix" {
+  description = "The address prefix to use for the database subnet"
+  type        = string
+  default     = "10.0.2.0/24"
+}
+
+variable "vm_config" {
+  description = "Configuration for the VM"
+  type = object({
+    size           = string
+    admin_username = string
+  })
+  default = {
+    size           = "Standard_B1s"
+    admin_username = "azureuser"
+  }
+}
+
+variable "mysql_config" {
+  description = "Configuration for MySQL"
+  type = object({
+    admin_username = string
+    admin_password = string
+    sku_name       = string
+    version        = string
+  })
+  sensitive = true
+}
+
+variable "storage_config" {
+  description = "Configuration for storage account"
+  type = object({
+    account_tier             = string
+    account_replication_type = string
+    container_name           = string
+  })
+  default = {
+    account_tier             = "Standard"
+    account_replication_type = "LRS"
+    container_name           = "defaultcontainer"
+  }
+}
+
+variable "route_table_name" {
+  description = "Name of the route table"
+  type        = string
+  default     = "main-route-table"
+}
+
+variable "routes" {
+  description = "List of routes to be added to the route table"
+  type = list(object({
+    name                   = string
+    address_prefix         = string
+    next_hop_type          = string
+    next_hop_in_ip_address = string
+  }))
+  default = []
+}
+
+variable "admin_ssh_key" {
+  description = "The public SSH key for the VMs"
+  type        = string
+}
+
+variable "create_public_ips" {
+  description = "Map of public IPs to create"
+  type = map(object({
+    allocation_method = string
+    sku               = string
+  }))
+  default = {
+    "vm" = {
+      allocation_method = "Dynamic"
+      sku               = "Basic"
+    },
+    "monitoring" = {
+      allocation_method = "Dynamic"
+      sku               = "Basic"
+    }
+  }
 }

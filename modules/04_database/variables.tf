@@ -30,3 +30,13 @@ variable "mysql_sku_name" {
 variable "mysql_version" {
   description = "The version of MySQL to use"
 }
+
+variable "db_subnet_id" {
+  description = "The ID of the subnet to deploy the database in"
+  type        = string
+}
+
+variable "private_dns_zone_id" {
+  description = "The ID of the private DNS zone for the database"
+  type        = string
+}

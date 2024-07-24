@@ -13,3 +13,7 @@ variable "project_name" {
 variable "environment" {
   description = "Environment (dev, test, prod)"
 }
+
+variable "subnet_id" {
+  description = "ID of the subnet to associate with the NSG"
+}
