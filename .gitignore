@@ -61,3 +61,4 @@ Thumbs.db
 *.bak
 *.backup
 *~
+terraform.tfvars
