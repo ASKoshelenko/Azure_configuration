@@ -5,13 +5,15 @@ resource "azurerm_storage_account" "storage" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  blob_properties {
-    versioning_enabled = true
+  static_website {
+    index_document     = null
+    error_404_document = null
   }
-}
 
-resource "azurerm_storage_container" "container" {
-  name                  = "${var.project_name}-container-${var.environment}"
-  storage_account_name  = azurerm_storage_account.storage.name
-  container_access_type = "private"
+  blob_properties {
+    versioning_enabled       = true
+    change_feed_enabled      = false
+    default_service_version  = "2020-06-12"
+    last_access_time_enabled = false
+  }
 }

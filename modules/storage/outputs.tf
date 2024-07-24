@@ -7,6 +7,6 @@ output "storage_account_primary_access_key" {
   sensitive = true
 }
 
-output "storage_container_name" {
-  value = azurerm_storage_container.container.name
-}
+# output "storage_container_name" {
+#   value = azurerm_storage_container.container.name
+# }
