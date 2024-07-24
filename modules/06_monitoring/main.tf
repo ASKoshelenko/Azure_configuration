@@ -37,4 +37,6 @@ resource "azurerm_linux_virtual_machine" "monitoring_vm" {
     sku       = "11"
     version   = "latest"
   }
+
+  custom_data = base64encode(file("${path.module}/init_script.sh"))
 }
