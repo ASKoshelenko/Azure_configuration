@@ -19,11 +19,15 @@ module "network" {
   route_table_name         = var.route_table_name
   routes                   = var.routes
   create_public_ips        = var.create_public_ips
+
+  depends_on = [azurerm_resource_group.rg]
 }
 
 resource "azurerm_private_dns_zone" "mysql" {
   name                = "privatelink.mysql.database.azure.com"
   resource_group_name = azurerm_resource_group.rg.name
+
+  depends_on = [azurerm_resource_group.rg]
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
@@ -31,6 +35,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
   resource_group_name   = azurerm_resource_group.rg.name
   private_dns_zone_name = azurerm_private_dns_zone.mysql.name
   virtual_network_id    = module.network.vnet_id
+
+  depends_on = [azurerm_private_dns_zone.mysql, module.network]
 }
 
 module "security" {
@@ -40,6 +46,8 @@ module "security" {
   project_name        = var.project_name
   environment         = var.environment
   subnet_id           = module.network.subnet_id
+
+  depends_on = [module.network]
 }
 
 module "vm" {
@@ -53,6 +61,8 @@ module "vm" {
   vm_size             = var.vm_config.size
   public_ip_id        = module.network.public_ip_ids["vm"]
   admin_ssh_key       = var.admin_ssh_key
+
+  depends_on = [module.network, module.security]
 }
 
 module "database" {
@@ -67,6 +77,8 @@ module "database" {
   mysql_version        = var.mysql_config.version
   db_subnet_id         = module.network.db_subnet_id
   private_dns_zone_id  = azurerm_private_dns_zone.mysql.id
+
+  depends_on = [module.network, azurerm_private_dns_zone.mysql]
 }
 
 module "storage" {
@@ -76,6 +88,8 @@ module "storage" {
   project_name        = var.project_name
   environment         = var.environment
   storage_config      = var.storage_config
+
+  depends_on = [azurerm_resource_group.rg]
 }
 
 module "monitoring" {
@@ -88,4 +102,6 @@ module "monitoring" {
   admin_username      = var.vm_config.admin_username
   admin_ssh_key       = var.admin_ssh_key
   public_ip_id        = module.network.public_ip_ids["monitoring"]
+
+  depends_on = [module.network, module.security]
 }
