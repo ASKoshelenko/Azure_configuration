@@ -10,7 +10,7 @@ resource "azurerm_mysql_flexible_server" "mysql" {
   sku_name               = var.mysql_sku_name
   version                = var.mysql_version
 
-  depends_on = [azurerm_private_dns_zone_virtual_network_link.mysql]
+  depends_on = [var.private_dns_zone_link]
 }
 
 resource "azurerm_mysql_flexible_database" "db" {

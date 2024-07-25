@@ -26,8 +26,6 @@ module "network" {
 resource "azurerm_private_dns_zone" "mysql" {
   name                = "privatelink.mysql.database.azure.com"
   resource_group_name = azurerm_resource_group.rg.name
-
-  depends_on = [azurerm_resource_group.rg]
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
@@ -35,8 +33,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
   resource_group_name   = azurerm_resource_group.rg.name
   private_dns_zone_name = azurerm_private_dns_zone.mysql.name
   virtual_network_id    = module.network.vnet_id
-
-  depends_on = [azurerm_private_dns_zone.mysql, module.network]
+  registration_enabled  = true
 }
 
 module "security" {
@@ -77,9 +74,11 @@ module "database" {
   mysql_version        = var.mysql_config.version
   db_subnet_id         = module.network.db_subnet_id
   private_dns_zone_id  = azurerm_private_dns_zone.mysql.id
+  private_dns_zone_link = azurerm_private_dns_zone_virtual_network_link.mysql.id
 
-  depends_on = [module.network, azurerm_private_dns_zone.mysql]
+  depends_on = [azurerm_private_dns_zone_virtual_network_link.mysql]
 }
+
 
 module "storage" {
   source              = "./modules/05_storage"

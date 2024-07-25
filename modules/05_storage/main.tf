@@ -6,14 +6,15 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = var.storage_config.account_replication_type
 
   static_website {
-    index_document     = "index.html"
-    error_404_document = "error.html"
+    index_document     = null
+    error_404_document = null
   }
 
   blob_properties {
     versioning_enabled       = true
-    change_feed_enabled      = true
-    last_access_time_enabled = true
+    change_feed_enabled      = false
+    default_service_version  = "2020-06-12"
+    last_access_time_enabled = false
   }
 }
 

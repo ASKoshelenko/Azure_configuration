@@ -108,3 +108,9 @@ variable "create_public_ips" {
     }
   }
 }
+
+variable "private_dns_zone_link" {
+  description = "The ID of the Private DNS Zone Link"
+  type        = string
+  default     = null
+}

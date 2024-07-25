@@ -1,6 +1,6 @@
 location                 = "North Europe"
 project_name             = "itmarathon"
-environment              = "dev"
+environment              = "test"
 vnet_address_space       = ["10.0.0.0/16"]
 subnet_address_prefixes  = ["10.0.1.0/24"]
 db_subnet_address_prefix = "10.0.2.0/24"
@@ -39,4 +39,4 @@ routes = [
   }
 ]
 
-admin_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0WGP1EZfreNQiPfViHCKnLs..."
+admin_ssh_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCmRls6iuufvsvdX603Rweeiti9YqWEmDmYcV/VmHAvtCyBqVkwYmqsSH+7BUMezR5DzZKB/hjJ+OiTvCHsnXyhG8+cbymdfL4FriCN+PergdfRFPEnFhMPqzws21Nkf9r6oBQZs36lFL4wZRxLw6cGYej/Fmpf2hUgfu24435/w1LX56XQmTBqntS3/80dEs/mNALT/qVuXpbD05zfo4L8ow72cUUII2I68eKySL1mHf/V8BemnzR7JagET1NNL4TI9Cah0C8LiAD2xs4l1mAaljNPoxmnCujACJdx7bQxnEOE5RHkYOfs+Tg5Chx/veVfqZ9WownschcRF2bMV8hYqot8JMo2MePMSoZA/DNyd+VL6IU/RQ1nnuMmD+bXFt59A063rPYkC9ttwEsnT+WWqFJRh0WqhQRUuiyXS0LaTcnIgthtk2T4dEfbeDjWuuySrYEEAkpVyWhFlTQDOIa/B5uUBxROPHIwil4Jl46sWK1nZvzJUA14fjT+uu2i4Xk= koshelenko@HP-Laptop-15-db1xxx"
