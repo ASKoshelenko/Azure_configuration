@@ -65,7 +65,7 @@ variable "storage_config" {
   default = {
     account_tier             = "Standard"
     account_replication_type = "LRS"
-    container_name           = "defaultcontainer"
+    container_name           = "mycontainer"
   }
 }
 
@@ -109,8 +109,30 @@ variable "create_public_ips" {
   }
 }
 
-variable "private_dns_zone_link" {
-  description = "The ID of the Private DNS Zone Link"
-  type        = string
-  default     = null
+variable "vm_os_disk_config" {
+  description = "OS disk configuration for VMs"
+  type = object({
+    caching              = string
+    storage_account_type = string
+  })
+  default = {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+}
+
+variable "vm_source_image_reference" {
+  description = "Source image reference for VMs"
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+  default = {
+    publisher = "Debian"
+    offer     = "debian-11"
+    sku       = "11"
+    version   = "latest"
+  }
 }

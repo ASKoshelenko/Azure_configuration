@@ -1,5 +1,5 @@
 variable "resource_group_name" {
-  description = "Name of the resource group"
+  description = "The name of the resource group"
   type        = string
 }
 
@@ -9,17 +9,17 @@ variable "location" {
 }
 
 variable "project_name" {
-  description = "Name of the project, used in resource names"
+  description = "The name of the project"
   type        = string
 }
 
 variable "environment" {
-  description = "Environment (dev, test, prod)"
+  description = "The environment (e.g., dev, test, prod)"
   type        = string
 }
 
 variable "storage_config" {
-  description = "Configuration for storage account"
+  description = "Configuration for the storage account"
   type = object({
     account_tier             = string
     account_replication_type = string

@@ -27,16 +27,16 @@ resource "azurerm_linux_virtual_machine" "monitoring_vm" {
   }
 
   os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    caching              = var.os_disk_config.caching
+    storage_account_type = var.os_disk_config.storage_account_type
   }
 
   source_image_reference {
-    publisher = "Debian"
-    offer     = "debian-11"
-    sku       = "11"
-    version   = "latest"
+    publisher = var.source_image_reference.publisher
+    offer     = var.source_image_reference.offer
+    sku       = var.source_image_reference.sku
+    version   = var.source_image_reference.version
   }
 
-  custom_data = base64encode(file("${path.module}/init_script.sh"))
+    custom_data = base64encode(file("${path.module}/init_script.sh"))
 }

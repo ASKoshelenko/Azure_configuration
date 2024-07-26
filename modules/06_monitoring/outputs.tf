@@ -1,6 +1,5 @@
 output "monitoring_vm_private_ip" {
-  value       = azurerm_network_interface.monitoring_nic.private_ip_address
-  description = "The private IP address of the monitoring VM"
+  value = azurerm_network_interface.monitoring_nic.private_ip_address
 }
 
 output "monitoring_vm_id" {

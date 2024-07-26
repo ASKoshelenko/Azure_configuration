@@ -48,37 +48,38 @@ module "security" {
 }
 
 module "vm" {
-  source              = "./modules/03_vm"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  subnet_id           = module.network.subnet_id
-  project_name        = var.project_name
-  environment         = var.environment
-  admin_username      = var.vm_config.admin_username
-  vm_size             = var.vm_config.size
-  public_ip_id        = module.network.public_ip_ids["vm"]
-  admin_ssh_key       = var.admin_ssh_key
+  source                 = "./modules/03_vm"
+  resource_group_name    = azurerm_resource_group.rg.name
+  location               = var.location
+  subnet_id              = module.network.subnet_id
+  project_name           = var.project_name
+  environment            = var.environment
+  admin_username         = var.vm_config.admin_username
+  vm_size                = var.vm_config.size
+  public_ip_id           = module.network.public_ip_ids["vm"]
+  admin_ssh_key          = var.admin_ssh_key
+  os_disk_config         = var.vm_os_disk_config
+  source_image_reference = var.vm_source_image_reference
 
   depends_on = [module.network, module.security]
 }
 
 module "database" {
-  source               = "./modules/04_database"
-  resource_group_name  = azurerm_resource_group.rg.name
-  location             = var.location
-  project_name         = var.project_name
-  environment          = var.environment
-  mysql_admin_username = var.mysql_config.admin_username
-  mysql_admin_password = var.mysql_config.admin_password
-  mysql_sku_name       = var.mysql_config.sku_name
-  mysql_version        = var.mysql_config.version
-  db_subnet_id         = module.network.db_subnet_id
-  private_dns_zone_id  = azurerm_private_dns_zone.mysql.id
+  source                = "./modules/04_database"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = var.location
+  project_name          = var.project_name
+  environment           = var.environment
+  mysql_admin_username  = var.mysql_config.admin_username
+  mysql_admin_password  = var.mysql_config.admin_password
+  mysql_sku_name        = var.mysql_config.sku_name
+  mysql_version         = var.mysql_config.version
+  db_subnet_id          = module.network.db_subnet_id
+  private_dns_zone_id   = azurerm_private_dns_zone.mysql.id
   private_dns_zone_link = azurerm_private_dns_zone_virtual_network_link.mysql.id
 
-  depends_on = [azurerm_private_dns_zone_virtual_network_link.mysql]
+  depends_on = [module.network, azurerm_private_dns_zone.mysql, azurerm_private_dns_zone_virtual_network_link.mysql]
 }
-
 
 module "storage" {
   source              = "./modules/05_storage"
@@ -92,15 +93,17 @@ module "storage" {
 }
 
 module "monitoring" {
-  source              = "./modules/06_monitoring"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  subnet_id           = module.network.subnet_id
-  project_name        = var.project_name
-  environment         = var.environment
-  admin_username      = var.vm_config.admin_username
-  admin_ssh_key       = var.admin_ssh_key
-  public_ip_id        = module.network.public_ip_ids["monitoring"]
+  source                 = "./modules/06_monitoring"
+  resource_group_name    = azurerm_resource_group.rg.name
+  location               = var.location
+  subnet_id              = module.network.subnet_id
+  project_name           = var.project_name
+  environment            = var.environment
+  admin_username         = var.vm_config.admin_username
+  admin_ssh_key          = var.admin_ssh_key
+  public_ip_id           = module.network.public_ip_ids["monitoring"]
+  os_disk_config         = var.vm_os_disk_config
+  source_image_reference = var.vm_source_image_reference
 
   depends_on = [module.network, module.security]
 }

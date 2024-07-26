@@ -10,8 +10,6 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_address_prefixes
-
-  depends_on = [azurerm_virtual_network.vnet]
 }
 
 resource "azurerm_subnet" "db_subnet" {
@@ -30,8 +28,6 @@ resource "azurerm_subnet" "db_subnet" {
       ]
     }
   }
-
-  depends_on = [azurerm_virtual_network.vnet]
 }
 
 resource "azurerm_route_table" "rt" {
@@ -48,22 +44,16 @@ resource "azurerm_route" "routes" {
   address_prefix         = var.routes[count.index].address_prefix
   next_hop_type          = var.routes[count.index].next_hop_type
   next_hop_in_ip_address = var.routes[count.index].next_hop_in_ip_address
-
-  depends_on = [azurerm_route_table.rt]
 }
 
 resource "azurerm_subnet_route_table_association" "main_subnet_route" {
   subnet_id      = azurerm_subnet.subnet.id
   route_table_id = azurerm_route_table.rt.id
-
-  depends_on = [azurerm_subnet.subnet, azurerm_route_table.rt]
 }
 
 resource "azurerm_subnet_route_table_association" "db_subnet_route" {
   subnet_id      = azurerm_subnet.db_subnet.id
   route_table_id = azurerm_route_table.rt.id
-
-  depends_on = [azurerm_subnet.db_subnet, azurerm_route_table.rt]
 }
 
 resource "azurerm_public_ip" "public_ips" {

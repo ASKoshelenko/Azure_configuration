@@ -29,11 +29,29 @@ variable "admin_username" {
 }
 
 variable "admin_ssh_key" {
-  description = "The public SSH key for the VM"
+  description = "The public SSH key"
   type        = string
 }
 
 variable "public_ip_id" {
-  description = "ID of the public IP to associate with the VM"
+  description = "The ID of the public IP address to associate with the VM"
   type        = string
+}
+
+variable "os_disk_config" {
+  description = "OS disk configuration for VM"
+  type = object({
+    caching              = string
+    storage_account_type = string
+  })
+}
+
+variable "source_image_reference" {
+  description = "Source image reference for VM"
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
 }
