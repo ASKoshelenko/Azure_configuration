@@ -121,6 +121,7 @@ variable "vm_os_disk_config" {
   }
 }
 
+
 variable "vm_source_image_reference" {
   description = "Source image reference for VMs"
   type = object({

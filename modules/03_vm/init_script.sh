@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+wait_for_apt() {
+  while sudo fuser /var/lib/apt/lists/lock >/dev/null 2>&1 ; do
+    echo "Waiting for other apt-get instances to finish..."
+    sleep 1
+  done
+}
+
+wait_for_apt
+
 sudo apt update
 sudo apt install -y nginx certbot python3-certbot-nginx
 
@@ -34,7 +43,6 @@ EOF
 sudo systemctl enable nginx
 sudo systemctl restart nginx
 
-# Создаем простую HTML страницу
 echo "<html><body><h1>Welcome to Nginx on Azure!</h1></body></html>" | sudo tee /var/www/html/index.html
 
 sudo apt install -y default-mysql-client

@@ -17,7 +17,6 @@ echo "deb [signed-by=/usr/share/keyrings/grafana.key] https://apt.grafana.com st
 sudo apt-get update
 sudo apt-get install -y grafana nginx certbot python3-certbot-nginx
 
-# Настройка Nginx для проксирования Grafana через HTTPS
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout /etc/ssl/private/nginx-selfsigned.key \
   -out /etc/ssl/certs/nginx-selfsigned.crt \

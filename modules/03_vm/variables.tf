@@ -39,7 +39,7 @@ variable "public_ip_id" {
 }
 
 variable "admin_ssh_key" {
-  description = "The public SSH key"
+  description = "The public SSH key for the VM"
   type        = string
 }
 
