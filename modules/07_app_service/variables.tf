@@ -21,4 +21,11 @@ variable "environment" {
 variable "subnet_id" {
   description = "ID of the subnet to integrate with App Service"
   type        = string
+  default     = null
+}
+
+variable "enable_vnet_integration" {
+  description = "Whether to enable VNet integration for the App Service"
+  type        = bool
+  default     = false
 }

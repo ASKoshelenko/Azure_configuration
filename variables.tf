@@ -20,16 +20,63 @@ variable "vnet_address_space" {
   default     = ["10.0.0.0/16"]
 }
 
-variable "subnet_address_prefixes" {
-  description = "Address prefixes for the subnet"
-  type        = list(string)
-  default     = ["10.0.1.0/24"]
+variable "main_subnet_address_prefix" {
+  description = "Address prefix for the main subnet"
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "monitoring_subnet_address_prefix" {
+  description = "Address prefix for the monitoring subnet"
+  type        = string
+  default     = "10.0.2.0/24"
 }
 
 variable "db_subnet_address_prefix" {
   description = "The address prefix to use for the database subnet"
   type        = string
-  default     = "10.0.2.0/24"
+  default     = "10.0.3.0/24"
+}
+
+variable "route_table_name" {
+  description = "Name of the route table"
+  type        = string
+  default     = "main-route-table"
+}
+
+variable "routes" {
+  description = "List of routes to be added to the route table"
+  type = list(object({
+    name                   = string
+    address_prefix         = string
+    next_hop_type          = string
+    next_hop_in_ip_address = string
+  }))
+  default = []
+}
+
+variable "create_public_ips" {
+  description = "Map of public IPs to create"
+  type = map(object({
+    allocation_method = string
+    sku               = string
+  }))
+  default = {
+    "vm" = {
+      allocation_method = "Dynamic"
+      sku               = "Basic"
+    },
+    "monitoring" = {
+      allocation_method = "Dynamic"
+      sku               = "Basic"
+    }
+  }
+}
+
+variable "allowed_ip_range" {
+  description = "The IP range allowed to access resources"
+  type        = string
+  default     = "0.0.0.0/0"
 }
 
 variable "vm_config" {
@@ -41,6 +88,39 @@ variable "vm_config" {
   default = {
     size           = "Standard_B1s"
     admin_username = "azureuser"
+  }
+}
+
+variable "admin_ssh_key" {
+  description = "The public SSH key for the VMs"
+  type        = string
+}
+
+variable "vm_os_disk_config" {
+  description = "OS disk configuration for VMs"
+  type = object({
+    caching              = string
+    storage_account_type = string
+  })
+  default = {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+}
+
+variable "vm_source_image_reference" {
+  description = "Source image reference for VMs"
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+  default = {
+    publisher = "Debian"
+    offer     = "debian-11"
+    sku       = "11"
+    version   = "latest"
   }
 }
 
@@ -69,77 +149,8 @@ variable "storage_config" {
   }
 }
 
-variable "route_table_name" {
-  description = "Name of the route table"
-  type        = string
-  default     = "main-route-table"
-}
-
-variable "routes" {
-  description = "List of routes to be added to the route table"
-  type = list(object({
-    name                   = string
-    address_prefix         = string
-    next_hop_type          = string
-    next_hop_in_ip_address = string
-  }))
-  default = []
-}
-
-variable "admin_ssh_key" {
-  description = "The public SSH key for the VMs"
-  type        = string
-}
-
-variable "create_public_ips" {
-  description = "Map of public IPs to create"
-  type = map(object({
-    allocation_method = string
-    sku               = string
-  }))
-  default = {
-    "vm" = {
-      allocation_method = "Dynamic"
-      sku               = "Basic"
-    },
-    "monitoring" = {
-      allocation_method = "Dynamic"
-      sku               = "Basic"
-    }
-  }
-}
-
-variable "vm_os_disk_config" {
-  description = "OS disk configuration for VMs"
-  type = object({
-    caching              = string
-    storage_account_type = string
-  })
-  default = {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-}
-
-
-variable "vm_source_image_reference" {
-  description = "Source image reference for VMs"
-  type = object({
-    publisher = string
-    offer     = string
-    sku       = string
-    version   = string
-  })
-  default = {
-    publisher = "Debian"
-    offer     = "debian-11"
-    sku       = "11"
-    version   = "latest"
-  }
-}
-
-variable "allowed_ip_range" {
-  description = "The IP range allowed to access resources"
-  type        = string
-  default     = "85.223.209.0/16"
+variable "enable_app_service_vnet_integration" {
+  description = "Whether to enable VNet integration for the App Service"
+  type        = bool
+  default     = false
 }

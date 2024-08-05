@@ -32,3 +32,9 @@ variable "allowed_ip_range" {
   description = "The IP range allowed to access resources"
   type        = string
 }
+
+variable "create_nsg_associations" {
+  description = "Whether to create NSG associations or not"
+  type        = bool
+  default     = true
+}

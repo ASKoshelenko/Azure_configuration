@@ -25,13 +25,10 @@ resource "azurerm_app_service" "app" {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOCKER_REGISTRY_SERVER_URL"          = "https://index.docker.io"
   }
-
-  identity {
-    type = "SystemAssigned"
-  }
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "app_vnet_integration" {
+  count          = var.enable_vnet_integration ? 1 : 0
   app_service_id = azurerm_app_service.app.id
   subnet_id      = var.subnet_id
 }

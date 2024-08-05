@@ -1,17 +1,41 @@
+output "resource_group_name" {
+  value = azurerm_resource_group.rg.name
+}
+
+output "vnet_id" {
+  value = module.network.vnet_id
+}
+
+output "main_subnet_id" {
+  value = module.network.main_subnet_id
+}
+
+output "monitoring_subnet_id" {
+  value = module.network.monitoring_subnet_id
+}
+
+output "db_subnet_id" {
+  value = module.network.db_subnet_id
+}
+
+output "main_subnet_address_prefix" {
+  value = module.network.main_subnet_address_prefix
+}
+
+output "monitoring_subnet_address_prefix" {
+  value = module.network.monitoring_subnet_address_prefix
+}
+
+output "db_subnet_address_prefix" {
+  value = module.network.db_subnet_address_prefix
+}
+
 output "vm_public_ip" {
   value = module.network.public_ip_addresses["vm"]
 }
 
 output "monitoring_vm_public_ip" {
   value = module.network.public_ip_addresses["monitoring"]
-}
-
-output "subnet_address_prefix" {
-  value = module.network.subnet_address_prefix
-}
-
-output "db_subnet_address_prefix" {
-  value = module.network.db_subnet_address_prefix
 }
 
 output "storage_account_name" {
@@ -30,10 +54,10 @@ output "monitoring_vm_private_ip" {
   value = module.monitoring.monitoring_vm_private_ip
 }
 
-output "app_service_name" {
-  value = module.app_service.app_service_name
+output "nsg_main_id" {
+  value = module.security.nsg_main_id
 }
 
-output "app_service_default_hostname" {
-  value = module.app_service.app_service_default_hostname
+output "nsg_monitoring_id" {
+  value = module.security.nsg_monitoring_id
 }

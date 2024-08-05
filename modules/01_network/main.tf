@@ -9,7 +9,14 @@ resource "azurerm_subnet" "main_subnet" {
   name                 = "snet-main-${var.project_name}-${var.environment}"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.subnet_address_prefixes
+  address_prefixes     = [var.main_subnet_address_prefix]
+}
+
+resource "azurerm_subnet" "monitoring_subnet" {
+  name                 = "snet-monitoring-${var.project_name}-${var.environment}"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = [var.monitoring_subnet_address_prefix]
 }
 
 resource "azurerm_subnet" "db_subnet" {
@@ -48,6 +55,11 @@ resource "azurerm_route" "routes" {
 
 resource "azurerm_subnet_route_table_association" "main_subnet_route" {
   subnet_id      = azurerm_subnet.main_subnet.id
+  route_table_id = azurerm_route_table.rt.id
+}
+
+resource "azurerm_subnet_route_table_association" "monitoring_subnet_route" {
+  subnet_id      = azurerm_subnet.monitoring_subnet.id
   route_table_id = azurerm_route_table.rt.id
 }
 
