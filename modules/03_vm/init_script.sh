@@ -49,15 +49,19 @@ sudo systemctl restart nginx
 echo "<html><body><h1>Welcome to Nginx on Azure!</h1></body></html>" | sudo tee /var/www/html/index.html
 
 # Download DigiCert Global Root CA certificate
-wget https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem -O /home/azureuser/DigiCertGlobalRootCA.crt.pem
+sudo wget https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem -O /home/azureuser/DigiCertGlobalRootCA.crt.pem
+sudo chown azureuser:azureuser /home/azureuser/DigiCertGlobalRootCA.crt.pem
+sudo chmod 644 /home/azureuser/DigiCertGlobalRootCA.crt.pem
 
 # Create a MySQL configuration file with SSL settings
-tee /home/azureuser/.my.cnf << EOF
+sudo tee /home/azureuser/.my.cnf << EOF
 [client]
 ssl-ca=/home/azureuser/DigiCertGlobalRootCA.crt.pem
+ssl=1
 EOF
 
 # Set correct permissions for the MySQL configuration file
-chmod 600 /home/azureuser/.my.cnf
+sudo chown azureuser:azureuser /home/azureuser/.my.cnf
+sudo chmod 600 /home/azureuser/.my.cnf
 
 echo "MySQL client installed and configured with SSL certificate."

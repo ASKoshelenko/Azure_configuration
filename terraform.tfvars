@@ -5,7 +5,8 @@ vnet_address_space              = ["10.0.0.0/16"]
 main_subnet_address_prefix      = "10.0.1.0/24"
 monitoring_subnet_address_prefix = "10.0.2.0/24"
 db_subnet_address_prefix        = "10.0.3.0/24"
-allowed_ip_range                = "85.223.209.0/24"
+# allowed_ip_range                = "85.223.209.0/24"
+allowed_ip_range                = "0.0.0.0/0"
 
 route_table_name = "main-route-table"
 routes = [
