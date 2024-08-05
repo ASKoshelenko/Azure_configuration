@@ -1,19 +1,19 @@
 resource "azurerm_virtual_network" "vnet" {
-  name                = "net-vnet-${var.project_name}-${var.environment}"
+  name                = "vnet-${var.project_name}-${var.environment}"
   address_space       = var.vnet_address_space
   location            = var.location
   resource_group_name = var.resource_group_name
 }
 
-resource "azurerm_subnet" "subnet" {
-  name                 = "net-snet-${var.project_name}-${var.environment}"
+resource "azurerm_subnet" "main_subnet" {
+  name                 = "snet-main-${var.project_name}-${var.environment}"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = var.subnet_address_prefixes
 }
 
 resource "azurerm_subnet" "db_subnet" {
-  name                 = "net-snet-db-${var.project_name}-${var.environment}"
+  name                 = "snet-db-${var.project_name}-${var.environment}"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = [var.db_subnet_address_prefix]
@@ -31,7 +31,7 @@ resource "azurerm_subnet" "db_subnet" {
 }
 
 resource "azurerm_route_table" "rt" {
-  name                = "net-rt-${var.route_table_name}-${var.project_name}-${var.environment}"
+  name                = "rt-${var.route_table_name}-${var.project_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
 }
@@ -47,7 +47,7 @@ resource "azurerm_route" "routes" {
 }
 
 resource "azurerm_subnet_route_table_association" "main_subnet_route" {
-  subnet_id      = azurerm_subnet.subnet.id
+  subnet_id      = azurerm_subnet.main_subnet.id
   route_table_id = azurerm_route_table.rt.id
 }
 
@@ -58,7 +58,7 @@ resource "azurerm_subnet_route_table_association" "db_subnet_route" {
 
 resource "azurerm_public_ip" "public_ips" {
   for_each            = var.create_public_ips
-  name                = "net-pip-${each.key}-${var.project_name}-${var.environment}"
+  name                = "pip-${each.key}-${var.project_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = each.value.allocation_method

@@ -1,5 +1,5 @@
 resource "azurerm_mysql_flexible_server" "mysql" {
-  name                   = "db-mysql-${var.project_name}-${var.environment}"
+  name                   = "mysql-${var.project_name}-${var.environment}"
   resource_group_name    = var.resource_group_name
   location               = var.location
   administrator_login    = var.mysql_admin_username
@@ -17,9 +17,25 @@ resource "azurerm_mysql_flexible_server" "mysql" {
 }
 
 resource "azurerm_mysql_flexible_database" "db" {
-  name                = "db-mysqldb-${var.project_name}-${var.environment}"
+  name                = "mysqldb-${var.project_name}-${var.environment}"
   resource_group_name = var.resource_group_name
   server_name         = azurerm_mysql_flexible_server.mysql.name
   charset             = "utf8mb4"
   collation           = "utf8mb4_unicode_ci"
+}
+
+resource "azurerm_mysql_flexible_server_firewall_rule" "allow_azure_services" {
+  name                = "AllowAzureServices"
+  resource_group_name = var.resource_group_name
+  server_name         = azurerm_mysql_flexible_server.mysql.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
+}
+
+resource "azurerm_mysql_flexible_server_firewall_rule" "allow_specific_ip" {
+  name                = "AllowSpecificIP"
+  resource_group_name = var.resource_group_name
+  server_name         = azurerm_mysql_flexible_server.mysql.name
+  start_ip_address    = "85.223.209.0"
+  end_ip_address      = "85.223.209.255"
 }

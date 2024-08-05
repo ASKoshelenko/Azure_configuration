@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "nic" {
-  name                = "vm-nic-${var.project_name}-${var.environment}"
+  name                = "nic-vm-${var.project_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -27,6 +27,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   os_disk {
+    name                 = "osdisk-vm-${var.project_name}-${var.environment}"
     caching              = var.os_disk_config.caching
     storage_account_type = var.os_disk_config.storage_account_type
   }
@@ -39,4 +40,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   custom_data = base64encode(file("${path.module}/init_script.sh"))
+
+  identity {
+    type = "SystemAssigned"
+  }
 }

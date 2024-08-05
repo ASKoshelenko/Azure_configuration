@@ -53,3 +53,8 @@ variable "private_dns_zone_link" {
   description = "The ID of the Private DNS Zone Link"
   type        = string
 }
+
+variable "allowed_ip_range" {
+  description = "The IP range allowed to access the database"
+  type        = string
+}

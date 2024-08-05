@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.project_name}-rg-${var.environment}"
+  name     = "rg-${var.project_name}-${var.environment}"
   location = var.location
 }
 
@@ -37,12 +37,14 @@ resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
 }
 
 module "security" {
-  source              = "./modules/02_security"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = var.location
-  project_name        = var.project_name
-  environment         = var.environment
-  subnet_id           = module.network.subnet_id
+  source               = "./modules/02_security"
+  resource_group_name  = azurerm_resource_group.rg.name
+  location             = var.location
+  project_name         = var.project_name
+  environment          = var.environment
+  main_subnet_id       = module.network.subnet_id
+  monitoring_subnet_id = module.network.subnet_id
+  allowed_ip_range     = var.allowed_ip_range
 
   depends_on = [module.network]
 }
@@ -77,6 +79,7 @@ module "database" {
   db_subnet_id          = module.network.db_subnet_id
   private_dns_zone_id   = azurerm_private_dns_zone.mysql.id
   private_dns_zone_link = azurerm_private_dns_zone_virtual_network_link.mysql.id
+  allowed_ip_range      = var.allowed_ip_range
 
   depends_on = [module.network, azurerm_private_dns_zone.mysql, azurerm_private_dns_zone_virtual_network_link.mysql]
 }
@@ -104,6 +107,17 @@ module "monitoring" {
   public_ip_id           = module.network.public_ip_ids["monitoring"]
   os_disk_config         = var.vm_os_disk_config
   source_image_reference = var.vm_source_image_reference
+
+  depends_on = [module.network, module.security]
+}
+
+module "app_service" {
+  source              = "./modules/07_app_service"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+  project_name        = var.project_name
+  environment         = var.environment
+  subnet_id           = module.network.subnet_id
 
   depends_on = [module.network, module.security]
 }

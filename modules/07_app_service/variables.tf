@@ -18,17 +18,7 @@ variable "environment" {
   type        = string
 }
 
-variable "main_subnet_id" {
-  description = "ID of the main subnet to associate with the NSG"
-  type        = string
-}
-
-variable "monitoring_subnet_id" {
-  description = "ID of the monitoring subnet to associate with the NSG"
-  type        = string
-}
-
-variable "allowed_ip_range" {
-  description = "The IP range allowed to access resources"
+variable "subnet_id" {
+  description = "ID of the subnet to integrate with App Service"
   type        = string
 }

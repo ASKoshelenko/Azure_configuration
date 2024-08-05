@@ -137,3 +137,9 @@ variable "vm_source_image_reference" {
     version   = "latest"
   }
 }
+
+variable "allowed_ip_range" {
+  description = "The IP range allowed to access resources"
+  type        = string
+  default     = "85.223.209.0/16"
+}

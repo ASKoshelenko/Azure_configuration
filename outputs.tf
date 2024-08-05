@@ -29,3 +29,11 @@ output "vm_private_ip" {
 output "monitoring_vm_private_ip" {
   value = module.monitoring.monitoring_vm_private_ip
 }
+
+output "app_service_name" {
+  value = module.app_service.app_service_name
+}
+
+output "app_service_default_hostname" {
+  value = module.app_service.app_service_default_hostname
+}
