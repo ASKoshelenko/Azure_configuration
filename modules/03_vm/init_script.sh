@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# Wait for apt lock to be released
 wait_for_apt() {
   while sudo fuser /var/lib/apt/lists/lock >/dev/null 2>&1 ; do
     echo "Waiting for other apt-get instances to finish..."
@@ -10,9 +11,11 @@ wait_for_apt() {
 
 wait_for_apt
 
-sudo apt update
-sudo apt install -y nginx certbot python3-certbot-nginx
+# Update and install necessary packages
+sudo apt-get update
+sudo apt-get install -y nginx certbot python3-certbot-nginx default-mysql-client wget
 
+# Configure Nginx
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -keyout /etc/ssl/private/nginx-selfsigned.key \
   -out /etc/ssl/certs/nginx-selfsigned.crt \
@@ -45,4 +48,16 @@ sudo systemctl restart nginx
 
 echo "<html><body><h1>Welcome to Nginx on Azure!</h1></body></html>" | sudo tee /var/www/html/index.html
 
-sudo apt install -y default-mysql-client
+# Download DigiCert Global Root CA certificate
+wget https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt.pem -O /home/azureuser/DigiCertGlobalRootCA.crt.pem
+
+# Create a MySQL configuration file with SSL settings
+tee /home/azureuser/.my.cnf << EOF
+[client]
+ssl-ca=/home/azureuser/DigiCertGlobalRootCA.crt.pem
+EOF
+
+# Set correct permissions for the MySQL configuration file
+chmod 600 /home/azureuser/.my.cnf
+
+echo "MySQL client installed and configured with SSL certificate."
