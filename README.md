@@ -1,4 +1,4 @@
-# Azure Infrastructure Project
+# Azure Infrastructure Project for IT Marathon
 
 This project sets up an Azure infrastructure using Terraform, including a virtual network, Linux VMs with Nginx, a MySQL Flexible Server, storage account, and an App Service.
 
@@ -58,14 +58,13 @@ This project sets up an Azure infrastructure using Terraform, including a virtua
 4. Ensure you have an SSH key for VM access.
 
 ### terraform.tfvars example
-```
+```hcl
 location                        = "North Europe"
 project_name                    = "projectName"
-environment                     = ""
+environment                     = "test"
 vnet_address_space              = ["10.0.0.0/16"]
-main_subnet_address_prefix      = "10.0.1.0/24"
-monitoring_subnet_address_prefix = "10.0.2.0/24"
-db_subnet_address_prefix        = "10.0.3.0/24"
+services_subnet_address_prefix  = "10.0.1.0/24"
+mysql_subnet_address_prefix     = "10.0.3.0/24"
 allowed_ip_range                = "0.0.0.0/0" #Be careful here
 
 route_table_name = "main-route-table"
@@ -86,14 +85,14 @@ routes = [
 
 vm_config = {
   size           = "Standard_B1s"
-  admin_username = ""
+  admin_username = "azureuser"
 }
 
 admin_ssh_key = "ssh-rsa AAAA..."
 
 mysql_config = {
-  admin_username = ""
-  admin_password = ""
+  admin_username = "mysqladmin"
+  admin_password = "SecurePassword123!"
   sku_name       = "B_Standard_B1s"
   version        = "8.0.21"
 }
@@ -105,11 +104,11 @@ storage_config = {
 }
 
 enable_app_service_vnet_integration = false
-
-
 ```
 
 ## Usage
+
+### Running the entire project
 
 1. Initialize Terraform:
    ```
@@ -131,9 +130,50 @@ enable_app_service_vnet_integration = false
    terraform destroy
    ```
 
+### Running individual modules
+
+To run individual modules, you can use the `-target` option with Terraform commands. Here are examples for each module:
+
+1. Network Module:
+   ```
+   terraform apply -target=module.network
+   ```
+
+2. Security Module:
+   ```
+   terraform apply -target=module.security
+   ```
+
+3. VM Module:
+   ```
+   terraform apply -target=module.vm
+   ```
+
+4. Database Module:
+   ```
+   terraform apply -target=module.database
+   ```
+
+5. Storage Module:
+   ```
+   terraform apply -target=module.storage
+   ```
+
+6. Monitoring Module:
+   ```
+   terraform apply -target=module.monitoring
+   ```
+
+7. App Service Module:
+   ```
+   terraform apply -target=module.app_service
+   ```
+
+Note: When running individual modules, ensure that their dependencies (like the network module) have been applied first.
+
 ## Modules
 
-- **Network**: Sets up the virtual network, subnets, and route tables.
+- **Network**: Sets up the virtual network, subnets, route tables, and resource group.
 - **Security**: Configures network security groups with rules for HTTP, HTTPS, SSH, and Grafana.
 - **VM**: Deploys a Linux VM with Nginx installed and MySQL client configured with SSL.
 - **Database**: Provisions a MySQL Flexible Server and a database with SSL enforcement.
@@ -145,8 +185,9 @@ enable_app_service_vnet_integration = false
 
 - SSL enforcement for MySQL connections
 - Network security groups to control inbound and outbound traffic
-- Separate subnets for different resources (main, database, monitoring)
+- Separate subnets for different resources (services, database)
 - Automatic configuration of MySQL client with SSL on VMs
+- Private DNS zones for secure database access
 
 ## Customization
 

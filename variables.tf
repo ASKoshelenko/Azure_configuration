@@ -20,20 +20,14 @@ variable "vnet_address_space" {
   default     = ["10.0.0.0/16"]
 }
 
-variable "main_subnet_address_prefix" {
-  description = "Address prefix for the main subnet"
+variable "services_subnet_address_prefix" {
+  description = "Address prefix for the services subnet"
   type        = string
   default     = "10.0.1.0/24"
 }
 
-variable "monitoring_subnet_address_prefix" {
-  description = "Address prefix for the monitoring subnet"
-  type        = string
-  default     = "10.0.2.0/24"
-}
-
-variable "db_subnet_address_prefix" {
-  description = "The address prefix to use for the database subnet"
+variable "mysql_subnet_address_prefix" {
+  description = "Address prefix for the MySQL subnet"
   type        = string
   default     = "10.0.3.0/24"
 }
@@ -153,4 +147,10 @@ variable "enable_app_service_vnet_integration" {
   description = "Whether to enable VNet integration for the App Service"
   type        = bool
   default     = false
+}
+
+variable "private_dns_zone_vnet_link_id" {
+  description = "The ID of the Private DNS Zone VNet Link"
+  type        = string
+  default     = null
 }

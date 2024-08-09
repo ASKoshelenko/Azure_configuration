@@ -1,13 +1,3 @@
-variable "resource_group_name" {
-  description = "Name of the resource group"
-  type        = string
-}
-
-variable "location" {
-  description = "The Azure region where resources will be created"
-  type        = string
-}
-
 variable "project_name" {
   description = "Name of the project, used in resource names"
   type        = string
@@ -18,30 +8,24 @@ variable "environment" {
   type        = string
 }
 
+variable "location" {
+  description = "The Azure region where resources will be created"
+  type        = string
+}
+
 variable "vnet_address_space" {
   description = "Address space for the virtual network"
   type        = list(string)
 }
 
-variable "main_subnet_address_prefix" {
-  description = "Address prefix for the main subnet"
+variable "services_subnet_address_prefix" {
+  description = "Address prefix for the services subnet"
   type        = string
 }
 
-variable "monitoring_subnet_address_prefix" {
-  description = "Address prefix for the monitoring subnet"
+variable "mysql_subnet_address_prefix" {
+  description = "The address prefix to use for the MySQL subnet"
   type        = string
-}
-
-variable "db_subnet_address_prefix" {
-  description = "The address prefix to use for the database subnet"
-  type        = string
-}
-
-variable "route_table_name" {
-  description = "Name of the route table"
-  type        = string
-  default     = "default-route-table"
 }
 
 variable "routes" {

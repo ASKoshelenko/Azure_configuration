@@ -2,60 +2,33 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "rg" {
-  name     = "rg-${var.project_name}-${var.environment}"
-  location = var.location
-}
-
 module "network" {
-  source                          = "./modules/01_network"
-  resource_group_name             = azurerm_resource_group.rg.name
-  location                        = var.location
-  project_name                    = var.project_name
-  environment                     = var.environment
-  vnet_address_space              = var.vnet_address_space
-  main_subnet_address_prefix      = var.main_subnet_address_prefix
-  monitoring_subnet_address_prefix = var.monitoring_subnet_address_prefix
-  db_subnet_address_prefix        = var.db_subnet_address_prefix
-  route_table_name                = var.route_table_name
-  routes                          = var.routes
-  create_public_ips               = var.create_public_ips
-
-  depends_on = [azurerm_resource_group.rg]
-}
-
-
-resource "azurerm_private_dns_zone" "mysql" {
-  name                = "privatelink.mysql.database.azure.com"
-  resource_group_name = azurerm_resource_group.rg.name
-}
-
-resource "azurerm_private_dns_zone_virtual_network_link" "mysql" {
-  name                  = "mysql-dns-link"
-  resource_group_name   = azurerm_resource_group.rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.mysql.name
-  virtual_network_id    = module.network.vnet_id
-  registration_enabled  = true
+  source                       = "./modules/01_network"
+  project_name                 = var.project_name
+  environment                  = var.environment
+  location                     = var.location
+  vnet_address_space           = var.vnet_address_space
+  services_subnet_address_prefix = var.services_subnet_address_prefix
+  mysql_subnet_address_prefix   = var.mysql_subnet_address_prefix
+  routes                       = var.routes
+  create_public_ips            = var.create_public_ips
 }
 
 module "security" {
   source               = "./modules/02_security"
-  resource_group_name  = azurerm_resource_group.rg.name
+  resource_group_name  = module.network.resource_group_name
   location             = var.location
   project_name         = var.project_name
   environment          = var.environment
-  main_subnet_id       = module.network.main_subnet_id
-  monitoring_subnet_id = module.network.monitoring_subnet_id
+  services_subnet_id   = module.network.services_subnet_id
   allowed_ip_range     = var.allowed_ip_range
-
-  depends_on = [module.network]
 }
 
 module "vm" {
   source                 = "./modules/03_vm"
-  resource_group_name    = azurerm_resource_group.rg.name
+  resource_group_name    = module.network.resource_group_name
   location               = var.location
-  subnet_id              = module.network.main_subnet_id
+  subnet_id              = module.network.services_subnet_id
   project_name           = var.project_name
   environment            = var.environment
   admin_username         = var.vm_config.admin_username
@@ -64,44 +37,39 @@ module "vm" {
   admin_ssh_key          = var.admin_ssh_key
   os_disk_config         = var.vm_os_disk_config
   source_image_reference = var.vm_source_image_reference
-
-  depends_on = [module.network, module.security]
 }
 
 module "database" {
-  source                = "./modules/04_database"
-  resource_group_name   = azurerm_resource_group.rg.name
-  location              = var.location
-  project_name          = var.project_name
-  environment           = var.environment
-  mysql_admin_username  = var.mysql_config.admin_username
-  mysql_admin_password  = var.mysql_config.admin_password
-  mysql_sku_name        = var.mysql_config.sku_name
-  mysql_version         = var.mysql_config.version
-  db_subnet_id          = module.network.db_subnet_id
-  private_dns_zone_id   = azurerm_private_dns_zone.mysql.id
-  private_dns_zone_link = azurerm_private_dns_zone_virtual_network_link.mysql.id
-  allowed_ip_range      = var.allowed_ip_range
-
-  depends_on = [module.network, azurerm_private_dns_zone.mysql, azurerm_private_dns_zone_virtual_network_link.mysql]
+  source                       = "./modules/04_database"
+  resource_group_name          = module.network.resource_group_name
+  location                     = var.location
+  project_name                 = var.project_name
+  environment                  = var.environment
+  mysql_admin_username         = var.mysql_config.admin_username
+  mysql_admin_password         = var.mysql_config.admin_password
+  mysql_sku_name               = var.mysql_config.sku_name
+  mysql_version                = var.mysql_config.version
+  mysql_subnet_id              = module.network.mysql_subnet_id
+  private_dns_zone_id          = module.network.private_dns_zone_id
+  private_dns_zone_vnet_link_id = module.network.private_dns_zone_vnet_link_id
 }
 
 module "storage" {
   source              = "./modules/05_storage"
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = module.network.resource_group_name
   location            = var.location
   project_name        = var.project_name
   environment         = var.environment
   storage_config      = var.storage_config
 
-  depends_on = [azurerm_resource_group.rg]
+  depends_on = [module.network]
 }
 
 module "monitoring" {
   source                 = "./modules/06_monitoring"
-  resource_group_name    = azurerm_resource_group.rg.name
+  resource_group_name    = module.network.resource_group_name
   location               = var.location
-  subnet_id              = module.network.main_subnet_id
+  subnet_id              = module.network.services_subnet_id
   project_name           = var.project_name
   environment            = var.environment
   admin_username         = var.vm_config.admin_username
@@ -109,18 +77,14 @@ module "monitoring" {
   public_ip_id           = module.network.public_ip_ids["monitoring"]
   os_disk_config         = var.vm_os_disk_config
   source_image_reference = var.vm_source_image_reference
-
-  depends_on = [module.network, module.security]
 }
 
 module "app_service" {
   source                  = "./modules/07_app_service"
-  resource_group_name     = azurerm_resource_group.rg.name
+  resource_group_name     = module.network.resource_group_name
   location                = var.location
   project_name            = var.project_name
   environment             = var.environment
-  subnet_id               = module.network.main_subnet_id
+  subnet_id               = module.network.services_subnet_id
   enable_vnet_integration = var.enable_app_service_vnet_integration
-
-  depends_on = [module.network]
 }

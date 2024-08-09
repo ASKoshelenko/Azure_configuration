@@ -12,17 +12,17 @@ resource "azurerm_storage_account" "storage" {
   }
 }
 
-resource "time_sleep" "wait_30_seconds" {
+resource "time_sleep" "wait_60_seconds" {
   depends_on = [azurerm_storage_account.storage]
-  create_duration = "30s"
+  create_duration = "60s"
 }
 
-resource "azurerm_storage_container" "container" {
+resource "azurerm_storage_container" "marathon_storage" {
   name                  = var.storage_config.container_name
   storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
 
-  depends_on = [time_sleep.wait_30_seconds]
+  depends_on = [time_sleep.wait_60_seconds]
 
   lifecycle {
     create_before_destroy = true

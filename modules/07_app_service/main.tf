@@ -11,24 +11,25 @@ resource "azurerm_app_service_plan" "app_plan" {
   }
 }
 
-resource "azurerm_app_service" "app" {
+resource "azurerm_app_service" "marathon_dotnet_app" {
   name                = "app-${var.project_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
   app_service_plan_id = azurerm_app_service_plan.app_plan.id
 
   site_config {
-    linux_fx_version = "DOCKER|nginx:latest"
+    linux_fx_version = "DOTNETCORE|6.0"
+    always_on        = true
   }
 
   app_settings = {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "DOCKER_REGISTRY_SERVER_URL"          = "https://index.docker.io"
+    "WEBSITE_RUN_FROM_PACKAGE"            = "1"
   }
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "app_vnet_integration" {
   count          = var.enable_vnet_integration ? 1 : 0
-  app_service_id = azurerm_app_service.app.id
+  app_service_id = azurerm_app_service.marathon_dotnet_app.id
   subnet_id      = var.subnet_id
 }

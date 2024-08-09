@@ -39,7 +39,7 @@ variable "mysql_version" {
   type        = string
 }
 
-variable "db_subnet_id" {
+variable "mysql_subnet_id" {
   description = "The ID of the subnet to deploy the MySQL server in"
   type        = string
 }
@@ -49,12 +49,7 @@ variable "private_dns_zone_id" {
   type        = string
 }
 
-variable "private_dns_zone_link" {
-  description = "The ID of the Private DNS Zone Link"
-  type        = string
-}
-
-variable "allowed_ip_range" {
-  description = "The IP range allowed to access the database"
+variable "private_dns_zone_vnet_link_id" {
+  description = "The ID of the Private DNS Zone VNet Link"
   type        = string
 }

@@ -1,33 +1,25 @@
 output "resource_group_name" {
-  value = azurerm_resource_group.rg.name
+  value = module.network.resource_group_name
 }
 
 output "vnet_id" {
   value = module.network.vnet_id
 }
 
-output "main_subnet_id" {
-  value = module.network.main_subnet_id
+output "services_subnet_id" {
+  value = module.network.services_subnet_id
 }
 
-output "monitoring_subnet_id" {
-  value = module.network.monitoring_subnet_id
+output "mysql_subnet_id" {
+  value = module.network.mysql_subnet_id
 }
 
-output "db_subnet_id" {
-  value = module.network.db_subnet_id
+output "services_subnet_address_prefix" {
+  value = module.network.services_subnet_address_prefix
 }
 
-output "main_subnet_address_prefix" {
-  value = module.network.main_subnet_address_prefix
-}
-
-output "monitoring_subnet_address_prefix" {
-  value = module.network.monitoring_subnet_address_prefix
-}
-
-output "db_subnet_address_prefix" {
-  value = module.network.db_subnet_address_prefix
+output "mysql_subnet_address_prefix" {
+  value = module.network.mysql_subnet_address_prefix
 }
 
 output "vm_public_ip" {
@@ -54,10 +46,6 @@ output "monitoring_vm_private_ip" {
   value = module.monitoring.monitoring_vm_private_ip
 }
 
-output "nsg_main_id" {
-  value = module.security.nsg_main_id
-}
-
-output "nsg_monitoring_id" {
-  value = module.security.nsg_monitoring_id
+output "nsg_services_id" {
+  value = module.security.nsg_services_id
 }

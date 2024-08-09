@@ -1,5 +1,5 @@
-resource "azurerm_network_interface" "nic" {
-  name                = "nic-vm-${var.project_name}-${var.environment}"
+resource "azurerm_network_interface" "client_nginx_nic" {
+  name                = "nic-${var.project_name}-${var.environment}"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -11,14 +11,14 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-resource "azurerm_linux_virtual_machine" "vm" {
+resource "azurerm_linux_virtual_machine" "client_nginx_vm" {
   name                = "vm-${var.project_name}-${var.environment}"
   resource_group_name = var.resource_group_name
   location            = var.location
   size                = var.vm_size
   admin_username      = var.admin_username
   network_interface_ids = [
-    azurerm_network_interface.nic.id,
+    azurerm_network_interface.client_nginx_nic.id,
   ]
 
   admin_ssh_key {
@@ -27,7 +27,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   os_disk {
-    name                 = "osdisk-vm-${var.project_name}-${var.environment}"
+    name                 = "osdisk-${var.project_name}-${var.environment}"
     caching              = var.os_disk_config.caching
     storage_account_type = var.os_disk_config.storage_account_type
   }
