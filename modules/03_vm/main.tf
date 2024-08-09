@@ -21,9 +21,12 @@ resource "azurerm_linux_virtual_machine" "client_nginx_vm" {
     azurerm_network_interface.client_nginx_nic.id,
   ]
 
-  admin_ssh_key {
-    username   = var.admin_username
-    public_key = var.admin_ssh_key
+  dynamic "admin_ssh_key" {
+    for_each = var.admin_ssh_keys
+    content {
+      username   = var.admin_username
+      public_key = admin_ssh_key.value
+    }
   }
 
   os_disk {

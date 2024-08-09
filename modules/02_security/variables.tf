@@ -23,7 +23,7 @@ variable "services_subnet_id" {
   type        = string
 }
 
-variable "allowed_ip_range" {
-  description = "The IP range allowed to access resources"
-  type        = string
+variable "allowed_ip_ranges" {
+  description = "List of IP ranges allowed to access resources"
+  type        = list(string)
 }

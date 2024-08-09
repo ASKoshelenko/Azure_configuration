@@ -28,9 +28,9 @@ variable "admin_username" {
   type        = string
 }
 
-variable "admin_ssh_key" {
-  description = "The public SSH key"
-  type        = string
+variable "admin_ssh_keys" {
+  description = "List of public SSH keys for VM access"
+  type        = list(string)
 }
 
 variable "public_ip_id" {

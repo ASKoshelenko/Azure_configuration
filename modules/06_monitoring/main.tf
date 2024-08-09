@@ -21,9 +21,12 @@ resource "azurerm_linux_virtual_machine" "monitoring_vm" {
     azurerm_network_interface.monitoring_nic.id,
   ]
 
-  admin_ssh_key {
-    username   = var.admin_username
-    public_key = var.admin_ssh_key
+  dynamic "admin_ssh_key" {
+    for_each = var.admin_ssh_keys
+    content {
+      username   = var.admin_username
+      public_key = admin_ssh_key.value
+    }
   }
 
   os_disk {
@@ -38,5 +41,5 @@ resource "azurerm_linux_virtual_machine" "monitoring_vm" {
     version   = var.source_image_reference.version
   }
 
-    custom_data = base64encode(file("${path.module}/init_script.sh"))
+  custom_data = base64encode(file("${path.module}/init_script.sh"))
 }

@@ -67,10 +67,9 @@ variable "create_public_ips" {
   }
 }
 
-variable "allowed_ip_range" {
-  description = "The IP range allowed to access resources"
-  type        = string
-  default     = "0.0.0.0/0"
+variable "allowed_ip_ranges" {
+  description = "List of IP ranges allowed to access resources"
+  type        = list(string)
 }
 
 variable "vm_config" {
@@ -85,9 +84,9 @@ variable "vm_config" {
   }
 }
 
-variable "admin_ssh_key" {
-  description = "The public SSH key for the VMs"
-  type        = string
+variable "admin_ssh_keys" {
+  description = "List of public SSH keys for VM access"
+  type        = list(string)
 }
 
 variable "vm_os_disk_config" {

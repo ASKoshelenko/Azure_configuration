@@ -12,7 +12,7 @@ resource "azurerm_network_security_rule" "allow_http" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "80"
-  source_address_prefix       = var.allowed_ip_range
+  source_address_prefixes     = var.allowed_ip_ranges
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_services.name
@@ -26,7 +26,7 @@ resource "azurerm_network_security_rule" "allow_https" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "443"
-  source_address_prefix       = var.allowed_ip_range
+  source_address_prefixes     = var.allowed_ip_ranges
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_services.name
@@ -40,7 +40,7 @@ resource "azurerm_network_security_rule" "allow_ssh" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "22"
-  source_address_prefix       = var.allowed_ip_range
+  source_address_prefixes     = var.allowed_ip_ranges
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_services.name
@@ -54,7 +54,7 @@ resource "azurerm_network_security_rule" "allow_grafana" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "3000"
-  source_address_prefix       = var.allowed_ip_range
+  source_address_prefixes     = var.allowed_ip_ranges
   destination_address_prefix  = "*"
   resource_group_name         = var.resource_group_name
   network_security_group_name = azurerm_network_security_group.nsg_services.name

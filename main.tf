@@ -21,7 +21,7 @@ module "security" {
   project_name         = var.project_name
   environment          = var.environment
   services_subnet_id   = module.network.services_subnet_id
-  allowed_ip_range     = var.allowed_ip_range
+  allowed_ip_ranges    = var.allowed_ip_ranges
 }
 
 module "vm" {
@@ -34,7 +34,7 @@ module "vm" {
   admin_username         = var.vm_config.admin_username
   vm_size                = var.vm_config.size
   public_ip_id           = module.network.public_ip_ids["vm"]
-  admin_ssh_key          = var.admin_ssh_key
+  admin_ssh_keys         = var.admin_ssh_keys
   os_disk_config         = var.vm_os_disk_config
   source_image_reference = var.vm_source_image_reference
 }
@@ -73,7 +73,7 @@ module "monitoring" {
   project_name           = var.project_name
   environment            = var.environment
   admin_username         = var.vm_config.admin_username
-  admin_ssh_key          = var.admin_ssh_key
+  admin_ssh_keys         = var.admin_ssh_keys
   public_ip_id           = module.network.public_ip_ids["monitoring"]
   os_disk_config         = var.vm_os_disk_config
   source_image_reference = var.vm_source_image_reference

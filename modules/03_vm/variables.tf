@@ -38,9 +38,9 @@ variable "public_ip_id" {
   type        = string
 }
 
-variable "admin_ssh_key" {
-  description = "The public SSH key for the VM"
-  type        = string
+variable "admin_ssh_keys" {
+  description = "List of public SSH keys for VM access"
+  type        = list(string)
 }
 
 variable "os_disk_config" {
