@@ -65,7 +65,18 @@ environment                     = "test"
 vnet_address_space              = ["10.0.0.0/16"]
 services_subnet_address_prefix  = "10.0.1.0/24"
 mysql_subnet_address_prefix     = "10.0.3.0/24"
-allowed_ip_range                = "0.0.0.0/0" #Be careful here
+allowed_ip_ranges = [
+  "86.57.255.94/32",    # vpn-by.epam.com
+  "213.184.231.20/32",  # vpn-by-minsk.epam.com
+  "202.65.196.242/32",  # vpn-cn.epam.com
+  "195.56.119.209/32",  # vpn-eu.epam.com
+  "195.56.119.212/32",  # vpn-eu.epam.com
+  "204.153.55.4/32",    # vpn-eu2.epam.com
+  "203.170.48.2/32",    # vpn-in.epam.com
+  "85.223.209.18/32",   # vpn-ua.epam.com
+  "174.128.60.160/32",  # vpn-us.epam.com
+  "174.128.60.162/32"   # vpn-us.epam.com
+]
 
 route_table_name = "main-route-table"
 routes = [
@@ -88,7 +99,10 @@ vm_config = {
   admin_username = "azureuser"
 }
 
-admin_ssh_key = "ssh-rsa AAAA..."
+admin_ssh_keys = [
+  "ssh-rsa AAAAB...",
+
+]
 
 mysql_config = {
   admin_username = "mysqladmin"
