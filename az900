@@ -1,0 +1,609 @@
++++
+### Question 1
+**Azure Firewall will encrypt all the network traffic sent from Azure to the Internet.**  
+**Azure Firewall зашифрует весь сетевой трафик, отправляемый из Azure в Интернет.**
+
+- **Answer: No**  
+  **Пояснение:** Azure Firewall manages network traffic rules and enforces security policies but does not encrypt traffic.
+
+---
+
+### Question 2
+**A network security group (NSG) will encrypt all the network traffic sent from Azure to the Internet.**  
+**Сетевая группа безопасности (NSG) зашифрует весь сетевой трафик, отправляемый из Azure в Интернет.**
+
+- **Answer: No**  
+  **Пояснение:** NSG controls network traffic by filtering based on rules but does not handle encryption.
+
+---
+
+### Question 3
+**Azure virtual machines that run Windows Server 2016 can encrypt the network traffic sent from the virtual machines to a host on the Internet.**  
+**Виртуальные машины Azure под управлением Windows Server 2016 могут зашифровать сетевой трафик, отправляемый с виртуальных машин на хост в Интернете.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure VMs can use encryption protocols like IPsec to encrypt network traffic, ensuring secure communication over the Internet.
+
+---
+
+### Question 4
+**Your company uses Azure in several regions. The company's policy states that administrators can only create additional Azure resources in the regions where their offices are located. What Azure resource should you create to meet this requirement?**  
+**Ваша компания использует Azure в нескольких регионах. Политика компании гласит, что администраторы могут создавать дополнительные ресурсы Azure только в тех регионах, где находятся их офисы. Какой ресурс Azure вам следует создать, чтобы удовлетворить это требование?**
+
+- A. a read-only lock  
+- B. an Azure policy  
+- C. a reservation
+
+- **Answer: B. an Azure policy**  
+  **Пояснение:** Azure Policy can enforce rules to limit where resources can be created based on specific conditions, such as geographic location.
+
+---
+
+### Question 5
+**You need to configure an Azure solution that meets the following requirements: protects websites from attacks, generates reports that contain details of attempted attacks. What should you include in the solution?**  
+**Вам нужно настроить решение Azure, которое соответствует следующим требованиям: защищает веб-сайты от атак, создает отчеты с подробной информацией о попытках атак. Что вы должны включить в решение?**
+
+- A. Azure Firewall  
+- B. a network security group (NSG)  
+- C. Azure Information Protection  
+- D. DDoS protection
+
+- **Answer: A. Azure Firewall**  
+  **Пояснение:** Azure Firewall provides security features to protect web applications and can generate detailed reports on security incidents and attempted attacks.
+
+---
+
+### Question 6
+**Your company plans to implement several security services in Azure. You need to determine which Azure services to use for each requirement:**
+
+- **Monitor threats by using sensors**  
+- **Enforce Azure Multi-Factor Authentication (MFA) based on a condition**
+
+**Which Azure services should you choose for each requirement?**  
+**Ваша компания планирует внедрить несколько сервисов безопасности в Azure. Вам нужно определить, какие сервисы Azure следует использовать для выполнения каждого требования:**
+
+- **Мониторинг угроз с использованием сенсоров**  
+- **Принудительное использование многофакторной аутентификации Azure (MFA) на основе условия**
+
+- **Answer:**  
+  - Monitor threats by using sensors: **Azure Security Center**  
+  - Enforce Azure Multi-Factor Authentication (MFA) based on a condition: **Azure Active Directory (Azure AD) Identity Protection**
+
+  **Пояснение:** Azure Security Center is used for monitoring threats with sensors, and Azure AD Identity Protection can enforce conditional MFA.
+
+---
+
+### Question 7
+**From Azure Service Health, an administrator can view the health of all the services deployed to an Azure environment and all other services available in Azure.**  
+**В Azure Service Health администратор может просматривать состояние всех сервисов, развернутых в среде Azure, и всех других доступных в Azure сервисов.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure Service Health provides information about the health of Azure services that are being used as well as other services offered by Azure.
+
+---
+
+### Question 8
+**From Azure Service Health, an administrator can create a rule to be alerted if an Azure service fails.**  
+**В Azure Service Health администратор может создать правило для получения уведомлений, если Azure сервис выходит из строя.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure Service Health allows administrators to set up alerts for service issues, ensuring they are informed when problems arise.
+
+---
+
+### Question 9
+**From Azure Service Health, an administrator can prevent a service failure from affecting a specific virtual machine.**  
+**В Azure Service Health администратор может предотвратить влияние сбоя сервиса на конкретную виртуальную машину.**
+
+- **Answer: No**  
+  **Пояснение:** Azure Service Health provides alerts and information but does not have the capability to prevent service failures from affecting virtual machines.
+
+---
+
+### Question 10
+**Your company plans to migrate all on-premises data to Azure. You need to determine whether Azure meets the company’s regional compliance requirements. What should you use?**  
+**Ваша компания планирует перенести все локальные данные в Azure. Вам нужно определить, соответствует ли Azure региональным требованиям компании по соответствию. Что следует использовать?**
+
+- A. the Knowledge Center  
+- B. Azure Marketplace  
+- C. the Azure portal  
+- D. the Trust Center
+
+- **Answer: D. the Trust Center**  
+  **Пояснение:** The Trust Center provides information on compliance, data protection, and security practices in Azure, helping companies understand how Azure meets compliance requirements.
+
+---
+
+### Question 11
+**Authorization to access Azure resources can be provided only to Azure Active Directory (Azure AD) users.**  
+**Авторизация для доступа к ресурсам Azure может предоставляться только пользователям Azure Active Directory (Azure AD).**
+
+- **Answer: No**  
+  **Пояснение:** Azure resources can be accessed by identities from Azure AD, third-party cloud providers, or on-premises Active Directory, depending on the setup.
+
+---
+
+### Question 12
+**Identities stored in Azure Active Directory (Azure AD), third-party cloud services, and on-premises Active Directory can be used to access Azure resources.**  
+**Идентификации, хранящиеся в Azure Active Directory (Azure AD), сторонних облачных сервисах и локальной Active Directory, могут использоваться для доступа к ресурсам Azure.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure AD supports federated identities, allowing users from various sources to access Azure resources.
+
+---
+
+### Question 13
+**Azure has built-in authentication and authorization services that provide secure access to Azure resources.**  
+**В Azure есть встроенные службы аутентификации и авторизации, обеспечивающие безопасный доступ к ресурсам Azure.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure offers various authentication and authorization services such as Azure AD, Multi-Factor Authentication, and role-based access control to secure resource access.
+
+---
+
+### Question 14
+**Your company plans to automate the deployment of servers in Azure. Your manager is concerned that administrative credentials might be exposed during deployment. You need to recommend an Azure solution that will encrypt the administrative credentials during deployment. What should you include in the recommendation?**  
+**Ваша компания планирует автоматизировать развертывание серверов в Azure. Ваш менеджер обеспокоен тем, что административные учетные данные могут быть раскрыты во время развертывания. Вам нужно порекомендовать решение Azure, которое будет шифровать административные учетные данные во время развертывания. Что вы должны включить в рекомендацию?**
+
+- A. Azure Key Vault  
+- B. Azure Information Protection  
+- C. Azure Security Center  
+- D. Azure Multi-Factor Authentication (MFA)
+
+- **Answer: A. Azure Key Vault**  
+  **Пояснение:** Azure Key Vault provides secure storage for secrets, keys, and certificates, making it the ideal solution for protecting administrative credentials during deployment.
+
+---
+
+### Question 15
+**You plan to deploy several Azure virtual machines. You need to control the ports that devices on the Internet can use to access the virtual machines. What should you use?**  
+**Вы планируете развернуть несколько виртуальных машин Azure. Вам нужно контролировать порты, которые устройства в Интернете могут использовать для доступа к виртуальным машинам. Что вы должны использовать?**
+
+- A. a network security group (NSG)  
+- B. an Azure Active Directory (Azure AD) role  
+- C. an Azure Active Directory group  
+- D. an Azure key vault
+
+- **Answer: A. a network security group (NSG)**  
+  **Пояснение:** NSGs allow you to define rules to control incoming and outgoing traffic for Azure resources, which includes managing port access.
+
+---
+
+### Question 16
+**You attempt to create several managed instances of Microsoft SQL Server in an Azure environment, and you receive a message stating that you need to increase the Azure subscription limits. What should you do to increase the limits?**  
+**Вы пытаетесь создать несколько управляемых экземпляров Microsoft SQL Server в среде Azure и получаете сообщение о необходимости увеличения лимитов подписки Azure. Что вам следует сделать, чтобы увеличить лимиты?**
+
+- A. Create a
+
+ service health alert  
+- B. Upgrade your support plan  
+- C. Modify an Azure policy  
+- D. Create a new support request
+
+- **Answer: D. Create a new support request**  
+  **Пояснение:** If you need to increase your Azure subscription limits, you should create a support request to ask for an increase.
+
+---
+
+### Question 17
+**Your company uses Azure in multiple regions. The company's policy states that administrators can create additional Azure resources only in the regions where their offices are located. Which Azure solution should you use to meet this requirement?**  
+**Ваша компания использует Azure в нескольких регионах. Политика компании требует, чтобы администраторы могли создавать дополнительные ресурсы Azure только в тех регионах, где расположены их офисы. Какой ресурс Azure вы должны создать, чтобы удовлетворить это требование?**
+
+- A. a read-only lock  
+- B. an Azure policy  
+- C. a reservation
+
+- **Answer: B. an Azure policy**  
+  **Пояснение:** Azure Policy allows you to define and enforce rules to ensure resources are only created in specified regions.
+
+---
+
+### Question 18
+**Your company has 10 offices. You plan to generate several billing reports from the Azure portal. Each report will contain information on the Azure resource usage of each office. Which Azure Resource Manager feature should you use before you generate the reports?**  
+**У вашей компании есть 10 офисов. Вы планируете создать несколько отчетов о выставлении счетов через портал Azure. Каждый отчет должен содержать информацию об использовании ресурсов Azure для каждого офиса. Какую функцию Azure Resource Manager следует использовать перед генерацией отчетов?**
+
+- A. tags  
+- B. templates  
+- C. locks  
+- D. policies
+
+- **Answer: A. tags**  
+  **Пояснение:** Tags allow you to categorize resources by metadata, making it easier to organize and generate reports based on different criteria such as office locations.
+
+---
+
+### Question 19
+**In Azure Active Directory Premium, at least 99.9 percent availability is guaranteed.**  
+**В Azure Active Directory Premium гарантируется доступность не менее 99,9%.**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure AD Premium offers a Service Level Agreement (SLA) of 99.9% uptime for its services.
+
+---
+
+### Question 20
+**The Service Level Agreement (SLA) for Azure Active Directory Basic is the same as the SLA for Azure Active Directory Free.**  
+**Соглашение об уровне обслуживания (SLA) для Azure Active Directory Basic такое же, как и для Azure Active Directory Free.**
+
+- **Answer: No**  
+  **Пояснение:** The SLA for Azure AD Basic may differ from that of the Free tier, and typically, paid tiers like Basic offer better SLA guarantees.
+
+---
+
+### Question 21
+**All paying Azure customers can claim a credit if their monthly uptime percentage is below the guaranteed amount in the Service Level Agreement (SLA).**  
+**Все платные клиенты Azure могут требовать кредит, если их ежемесячный процент доступности ниже гарантированного в Соглашении об уровне обслуживания (SLA).**
+
+- **Answer: Yes**  
+  **Пояснение:** Azure's SLA provides service credits to customers when the monthly uptime percentage falls below the guaranteed SLA levels.
+
+---
+
+### Question 22
+**All Azure services in private preview must be accessed by using a separate Azure portal.**  
+**Все сервисы Azure в приватном превью должны быть доступны через отдельный портал Azure.**
+
+- **Answer: No**  
+  **Пояснение:** Services in private preview are typically accessed through the standard Azure portal with specific permissions, not a separate portal.
+
+---
+
+### Question 23
+**Azure services in public preview can be used in production environments.**  
+**Сервисы Azure в публичном превью могут использоваться в производственных средах.**
+
+- **Answer: Yes**  
+  **Пояснение:** Public preview services can be used in production environments, although they may not have the same support or SLA guarantees as GA services.
+
+---
+
+### Question 24
+**Azure services in public preview are subject to a Service Level Agreement (SLA).**  
+**Сервисы Azure в публичном превью подпадают под соглашение об уровне обслуживания (SLA).**
+
+- **Answer: No**  
+  **Пояснение:** Services in public preview usually do not offer SLA guarantees, as they are in the testing phase and may not have full support.
+
+---
+
+### Question 25
+**A Standard support plan is included in an Azure free account.**  
+**Стандартный план поддержки включен в бесплатный аккаунт Azure.**
+
+- **Answer: No**  
+  **Пояснение:** Free Azure accounts come with basic support; Standard support requires a separate purchase.
+
+---
+
+### Question 26
+**A Premier support plan can only be purchased by companies that have an Enterprise Agreement (EA).**  
+**План поддержки Premier можно приобрести только компаниям, имеющим корпоративное соглашение (EA).**
+
+- **Answer: Yes**  
+  **Пояснение:** Premier support is typically available to customers with Enterprise Agreements due to its high level of service and commitment.
+
+---
+
+### Question 27
+**Support from MSDN forums is only provided to companies that have a pay-as-you-go subscription.**  
+**Поддержка на форумах MSDN предоставляется только компаниям с подпиской по модели «оплата по мере использования».**
+
+- **Answer: No**  
+  **Пояснение:** MSDN forums are open to all users, regardless of their subscription model, providing community and expert support.
+
+---
+
+### Question 28
+**Your company plans to migrate to Azure. The company has several departments. Each department will manage its Azure resources. What are two possible techniques to segment Azure for the departments? Each correct answer presents a complete solution.**  
+**Ваша компания планирует перейти на Azure. В компании несколько отделов. Все ресурсы Azure, используемые каждым отделом, будут управляться администратором отдела. Какие два возможные техники сегментации Azure можно использовать для отделов? Каждый правильный ответ представляет собой завершенное решение.**
+
+- A. multiple subscriptions  
+- B. multiple Azure Active Directory (Azure AD) directories  
+- C. multiple regions  
+- D. multiple resource groups
+
+- **Answer: A. multiple subscriptions**  
+- **Answer: D. multiple resource groups**  
+  **Пояснение:** Using multiple subscriptions and resource groups allows departments to manage their own resources and segregate costs, access, and policies effectively.
+
+---
+
+### Question 29
+**Which statement accurately describes the Modern Lifecycle Policy for Azure services?**  
+**Какое утверждение точно описывает политику Modern Lifecycle Policy для сервисов Azure?**
+
+- A. Microsoft provides mainstream support for a service for five years.  
+- B. Microsoft provides a minimum of 12 months' notice before ending support for a service.  
+- C. After a service is made generally available, Microsoft provides support for the service for a minimum of four years.  
+- D. When a service is retired, you can purchase extended support for the service for up to five years.
+
+- **Answer: B. Microsoft provides a minimum of 12 months' notice before ending support for a service.**  
+  **Пояснение:** The Modern Lifecycle Policy ensures customers are given 12 months' notice before the end of support, allowing them time to transition.
+
+---
+
+### Question 30
+**You plan to deploy resources Infrastructure as a Service (IaaS) in Azure. Which resource is an example of IaaS?**  
+**Вы планируете развернуть ресурсы Infrastructure as a Service (IaaS) в Azure. Какой ресурс является примером IaaS?**
+
+- A. an Azure web app  
+- B. an Azure virtual machine  
+- C. an Azure logic app  
+- D. an Azure SQL database
+
+- **Answer: B. an Azure virtual machine**  
+  **Пояснение:** An Azure virtual machine (VM) is a core example of IaaS, where the customer manages the OS, applications, and other configurations.
+
+---
+
+### Question 31
+**Your development team plans to deploy and then delete 50 virtual machines each week. All the virtual machines are configured by using Azure Resource Manager templates. You need to recommend which Azure service minimizes the administrative effort required to deploy and delete the virtual machines. What should you recommend?**  
+**Ваша команда разработчиков планирует развертывать и затем удалять 50 виртуальных машин каждую неделю. Все виртуальные машины настраиваются с использованием шаблонов Azure Resource Manager. Вам нужно порекомендовать, какой сервис Azure минимизирует административные усилия, необходимые для развертывания и удаления виртуальных машин. Что вы порекомендуете?**
+
+- A. Azure Reserved Virtual Machines (VM) Instances  
+- B. Azure DevTest Labs  
+- C. Azure virtual machine scale sets  
+- D. Microsoft Managed Desktop
+
+- **Answer: B. Azure DevTest Labs**  
+  **Пояснение:** Azure DevTest Labs is designed for managing development and test environments, automating VM deployments, and reducing management effort.
+
+---
+
+### Question 32
+**Which service provides serverless computing in Azure?**  
+**Какой сервис предоставляет серверные вычисления (serverless computing) в Azure?**
+
+- A. Azure Virtual Machines  
+- B. Azure Functions  
+- C. Azure Storage Account  
+- D. Azure Container Instances
+
+- **Answer: B. Azure Functions**  
+  **Пояснение:** Azure Functions is a serverless compute service that allows you to run event-driven code without needing to explicitly manage infrastructure.
+
+---
+
+### Question 33
+**Which Azure
+
+ service provides a set of version control tools to manage code?**  
+**Какой сервис Azure предоставляет набор инструментов управления версиями для управления кодом?**
+
+- A. Azure Repos  
+- B. Azure DevTest Labs  
+- C. Azure Storage  
+- D. Azure Cosmos DB
+
+- **Answer: A. Azure Repos**  
+  **Пояснение:** Azure Repos offers version control repositories, enabling teams to manage their source code using Git or TFVC.
+
+---
+
+### Question 34
+**Which service provides network traffic filtering across multiple Azure subscriptions and virtual networks?**  
+**Какой сервис обеспечивает фильтрацию сетевого трафика между несколькими подписками Azure и виртуальными сетями?**
+
+- A. Azure Firewall  
+- B. an application security group  
+- C. Azure DDoS protection  
+- D. a network security group (NSG)
+
+- **Answer: A. Azure Firewall**  
+  **Пояснение:** Azure Firewall provides a centralized way to manage and filter traffic across multiple Azure Virtual Networks and subscriptions.
+
+---
+
+### Question 35
+**Which Azure service provides an in-memory data structure store, a distributed non-relational database, and a message broker?**  
+**Какой сервис Azure предоставляет хранилище структур данных в памяти, распределенную нереляционную базу данных и брокер сообщений?**
+
+- A. Cosmos DB  
+- B. SQL Server Database  
+- C. Cache for Redis  
+- D. Database Migration Service
+
+- **Answer: C. Cache for Redis**  
+  **Пояснение:** Azure Cache for Redis is a fully managed in-memory data store that can be used as a cache, a message broker, and more.
+
+---
+
+### Question 36
+**Which of the following features is used to categorize resources in Azure for better management and billing?**  
+**Какая из следующих функций используется для категоризации ресурсов в Azure для улучшения управления и выставления счетов?**
+
+- A. tags  
+- B. templates  
+- C. locks  
+- D. policies
+
+- **Answer: A. tags**  
+  **Пояснение:** Tags are key-value pairs that you can apply to Azure resources to categorize them for billing and management purposes.
+
+---
+
+### Question 37
+**Your company plans to purchase Azure. The company’s support policy states that Azure environment must provide access to support engineers via phone or email. You need to recommend a support plan that meets the support policy requirements. Solution: Recommend a Standard support plan. Does this meet the goal?**  
+**Ваша компания планирует приобрести Azure. Политика поддержки компании указывает, что среда Azure должна предоставлять возможность доступа к инженерам поддержки по телефону или электронной почте. Вам нужно порекомендовать план поддержки, соответствующий требованиям политики поддержки. Решение: Рекомендовать стандартный план поддержки. Соответствует ли это цели?**
+
+- **Answer: Yes**  
+  **Пояснение:** The Standard support plan includes access to support engineers via phone and email, which meets the company's support policy requirements.
+
+---
+
+### Question 38
+**Your company plans to purchase Azure. The company’s support policy states that Azure environment must provide access to support engineers via phone or email. You need to recommend a support plan that meets the support policy requirements. Solution: Recommend a Premier support plan. Does this meet the goal?**  
+**Ваша компания планирует приобрести Azure. Политика поддержки компании указывает, что среда Azure должна предоставлять возможность доступа к инженерам поддержки по телефону или электронной почте. Вам нужно порекомендовать план поддержки, соответствующий требованиям политики поддержки. Решение: Рекомендовать план поддержки Premier. Соответствует ли это цели?**
+
+- **Answer: Yes**  
+  **Пояснение:** The Premier support plan provides comprehensive support, including access to support engineers via phone and email, which meets the company's support requirements.
+
+---
+
+### Question 39
+**What is the primary benefit of using Azure Resource Manager (ARM) templates?**  
+**Какое основное преимущество использования шаблонов Azure Resource Manager (ARM)?**
+
+- A. They allow you to define dependencies for resources to ensure the correct order of deployment.  
+- B. They automate the scaling of virtual machines.  
+- C. They provide version control for source code.  
+- D. They enable billing alerts for cost management.
+
+- **Answer: A. They allow you to define dependencies for resources to ensure the correct order of deployment.**  
+  **Пояснение:** ARM templates enable you to define the infrastructure and dependencies of Azure resources, ensuring they are deployed in the correct order and configuration.
+
+---
+
+### Question 40
+**Your company plans to deploy a multi-tier application in Azure. The application will have a web front end and a back-end database. You need to recommend a solution to limit the connection between the web front end and the back-end database. What should you recommend?**  
+**Ваша компания планирует развернуть многослойное приложение в Azure. Приложение будет иметь веб-фронтенд и базу данных. Вам нужно порекомендовать решение для ограничения соединения между веб-фронтендом и базой данных. Что вы порекомендуете?**
+
+- A. a network security group (NSG)  
+- B. a route table  
+- C. an Azure Load Balancer  
+- D. Azure Traffic Manager
+
+- **Answer: A. a network security group (NSG)**  
+  **Пояснение:** NSGs can be used to create security rules that limit traffic between the front-end and back-end, ensuring only allowed connections are made.
+
+---
+
+### Question 41
+**Your company plans to deploy an application that requires the creation of an Azure SQL Database. You need to recommend a deployment option for the database. What should you recommend?**  
+**Ваша компания планирует развернуть приложение, которое требует создания базы данных Azure SQL. Вам нужно порекомендовать вариант развертывания для базы данных. Что вы порекомендуете?**
+
+- A. a single Azure SQL Database  
+- B. an elastic pool  
+- C. a SQL Managed Instance  
+- D. a SQL Server on an Azure virtual machine
+
+- **Answer: A. a single Azure SQL Database**  
+  **Пояснение:** For a standalone database application, a single Azure SQL Database provides a cost-effective and managed solution without the need for complex infrastructure.
+
+---
+
+### Question 42
+**You have an Azure subscription named Subscription1. You sign in to the Azure portal and create a resource group named RG1. From Azure documentation, you have the following command that creates a virtual machine named VM1. You need to create VM1 in Subscription1 by using the command. Solution: From a computer that runs Windows 10, install Azure CLI. From PowerShell, sign in to Azure and then run the command. Does this meet the goal?**  
+**У вас есть подписка Azure с именем Subscription1. Вы входите в портал Azure и создаете группу ресурсов с именем RG1. Из документации Azure у вас есть следующая команда, которая создает виртуальную машину с именем VM1. Вам нужно создать VM1 в Subscription1, используя эту команду. Решение: с компьютера, на котором установлена Windows 10, установите Azure CLI. Войдите в Azure через PowerShell, а затем выполните команду. Соответствует ли это цели?**
+
+- A. Yes  
+- B. No
+
+- **Answer: A. Yes**  
+  **Пояснение:** Installing Azure CLI on a local machine and using PowerShell to sign in and run the command is a valid and effective way to create resources in Azure.
+
+---
+
+### Question 43
+**Your company plans to use Azure for several projects. You need to recommend a solution to ensure that Azure administrators receive immediate alerts if resources in Azure fail. What should you recommend?**  
+**Ваша компания планирует использовать Azure для нескольких проектов. Вам нужно порекомендовать решение, чтобы администраторы Azure получали мгновенные уведомления в случае отказа ресурсов в Azure. Что вы порекомендуете?**
+
+- A. Azure Security Center  
+- B. Azure Advisor  
+- C. Azure Monitor  
+- D. Azure Activity Log
+
+- **Answer: C. Azure Monitor**  
+  **Пояснение:** Azure Monitor provides comprehensive monitoring and alerting capabilities, including the ability to send immediate alerts if specific resources fail.
+
+---
+
+### Question 44
+**Your company needs to track Azure usage by department. Each department must be billed separately for its Azure usage. What should you create?**  
+**Ваша компания должна отслеживать использование Azure по отделам. Каждый отдел должен получать отдельные счета за использование Azure. Что следует создать?**
+
+- A. multiple subscriptions  
+- B. a single subscription with multiple resource groups  
+- C. multiple Azure AD tenants  
+- D. multiple Azure Resource Manager templates
+
+- **Answer: A. multiple subscriptions**  
+  **Пояснение:** Creating multiple subscriptions allows each department to have its own billing account, ensuring separate tracking and billing for Azure usage.
+
+---
+
+### Question 45
+**Which Azure service is used to build, manage, and distribute cloud-based apps and services?**  
+**Какой сервис Azure используется для создания, управления и распространения облачных приложений и сервисов?**
+
+- A. Azure DevOps  
+- B. Azure Repos  
+- C. Azure Logic Apps  
+- D. Azure App Service
+
+- **Answer: D. Azure App Service**  
+  **Пояснение:** Azure App Service is a fully managed platform for building, deploying, and scaling web apps and APIs.
+
+---
+
+### Question 46
+**Your company plans to host several applications in Azure. The company’s compliance policy states that only certain data residency regions can be used to store customer data. What should you
+
+ recommend to enforce the compliance policy?**  
+**Ваша компания планирует размещать несколько приложений в Azure. Политика компании по соответствию требованиям гласит, что для хранения данных клиентов могут использоваться только определенные регионы. Что вы порекомендуете для обеспечения выполнения политики соответствия требованиям?**
+
+- A. Azure Policy  
+- B. Azure Blueprint  
+- C. Azure Lock  
+- D. Azure Monitor
+
+- **Answer: A. Azure Policy**  
+  **Пояснение:** Azure Policy allows you to enforce rules and conditions on resources, including which regions can be used for storing data, ensuring compliance with company policies.
+
+---
+
+### Question 47
+**Which Azure service should you use to store keys, secrets, and certificates securely?**  
+**Какой сервис Azure следует использовать для безопасного хранения ключей, секретов и сертификатов?**
+
+- A. Azure Security Center  
+- B. Azure Key Vault  
+- C. Azure Storage Account  
+- D. Azure AD
+
+- **Answer: B. Azure Key Vault**  
+  **Пояснение:** Azure Key Vault provides secure storage for secrets, keys, and certificates, helping protect sensitive information in the cloud.
+
+---
+
+### Question 48
+**You need to create a virtual machine that can automatically scale based on demand. Which Azure service should you use?**  
+**Вам нужно создать виртуальную машину, которая может автоматически масштабироваться в зависимости от спроса. Какой сервис Azure следует использовать?**
+
+- A. Azure Virtual Machines  
+- B. Azure Functions  
+- C. Azure Virtual Machine Scale Sets  
+- D. Azure DevTest Labs
+
+- **Answer: C. Azure Virtual Machine Scale Sets**  
+  **Пояснение:** Azure Virtual Machine Scale Sets allow you to create and manage a group of identical, load-balanced VMs that automatically scale based on demand.
+
+---
+
+### Question 49
+**Your company wants to deploy several custom applications to Azure. The applications will provide invoicing services to the customers of the company. Each application will have several prerequisite applications and services installed. You need to recommend a cloud deployment solution for all the applications. What should you recommend?**  
+**Ваша компания планирует развернуть несколько пользовательских приложений в Azure. Эти приложения будут предоставлять услуги по выставлению счетов для клиентов компании. Каждое приложение будет иметь несколько предварительно установленных приложений и служб. Вам нужно порекомендовать облачное решение для развертывания всех приложений. Что вы порекомендуете?**
+
+- A. Software as a Service (SaaS)  
+- B. Platform as a Service (PaaS)  
+- C. Infrastructure as a Service (IaaS)
+
+- **Answer: B. Platform as a Service (PaaS)**  
+  **Пояснение:** PaaS provides a platform allowing customers to develop, run, and manage applications without the complexity of building and maintaining infrastructure.
+
+---
+
+### Question 50
+**You need to recommend an Azure solution that encrypts administrative credentials during deployment. What should you recommend?**  
+**Вам нужно порекомендовать решение Azure, которое шифрует административные учетные данные во время развертывания. Что вы порекомендуете?**
+
+- A. Azure Key Vault  
+- B. Azure Information Protection  
+- C. Azure Security Center  
+- D. Azure Multi-Factor Authentication (MFA)
+
+- **Answer: A. Azure Key Vault**  
+  **Пояснение:** Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud applications and services, providing secure storage and encryption of sensitive data.
+
+---
++++
