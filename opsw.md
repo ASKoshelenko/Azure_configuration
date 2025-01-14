@@ -1,35 +1,37 @@
-# Personal Introduction for Interview
+# My Introduction for HR Interview
 
-## Opening Statement
-"Hi, Rano! I'm Alex, a DevOps engineer who strives to expand my knowledge across different areas. I have experience in cloud technologies and infrastructure automation. I'm certified as an AWS Cloud Practitioner, Google Cloud Professional DevOps Engineer, and hold Microsoft Azure certification. Just a couple of weeks ago, I achieved recognition by placing in the top 1000 specialists worldwide in the Google Skill Boost Challenge 2024."
+## Opening (Warm & Personal)
+"Hi, Rano! I'm Alex, and I'm really excited to be here today. I'm a DevOps engineer who loves learning and exploring new technologies. Recently, I achieved something I'm quite proud of - I made it into the top 1000 specialists worldwide in the Google Skill Boost Challenge 2024. I also hold certifications from AWS, Google Cloud, and Microsoft Azure."
 
-## Current Experience
-"Currently at EPAM Systems, I'm working on several projects:
-- On the AWS project, I mainly perform junior-level tasks
-- I'm also involved in an Azure project, where I work in an international team handling DevOps responsibilities"
+## Current Role (Show Experience)
+"At EPAM Systems, I'm currently working on some interesting projects:
+- An AWS project where I'm growing my cloud expertise
+- An Azure project with an international team where I handle various DevOps tasks
+- And what I find really exciting is how different each project is, bringing new challenges and learning opportunities"
 
-## Key Project Highlight
-"I think it's important to mention that I recently served as a DevOps engineer for the IT Marathon project, where:
-- Our team built the complete infrastructure for applications
-- Created event hosting from scratch using Terraform
-- Later presented this work on YouTube to over 500 viewers"
+## Recent Achievement (Show Initiative)
+"I'd love to share a recent project that I'm particularly proud of. I was the DevOps engineer for EPAM's IT Marathon, where:
+- We built everything from scratch using Terraform
+- I got to work with an amazing team
+- The best part was presenting our work on YouTube to over 500 students
+It was challenging but incredibly rewarding!"
 
-## Notable Achievement
-"I'm particularly proud of the CRM system I developed, which:
-- Automated client processes
-- Reduced data processing time by 40%
-- Covered the full cycle from infrastructure design to implementation"
+## Business Impact (Show Value)
+"One of my favorite projects was developing a CRM system that really made a difference:
+- It automated many manual processes
+- Cut down processing time by 40%
+- I handled everything from initial design to final implementation
+It showed me how technology can directly improve business operations"
 
-## Motivation for Application
-"I decided to apply for this position because:
-- My current project's funding ends on January 31st
-- I heard great things about your team from Dima, your DevOps engineer
-- He told me about the strong technical expertise and great learning opportunities at OpsWorks
-- I'm really excited about the possibility of growing professionally in such a skilled team
-- Especially given your company's strong focus on AWS solutions and impressive project portfolio"
+## Why OpsWorks (Show Interest)
+"I learned about this opportunity at an interesting time:
+- My current project is wrapping up at the end of January
+- I heard great things about OpsWorks from Dima, your DevOps engineer
+- He mentioned the strong AWS expertise here and the great team culture
+- I'm really excited about the possibility of growing in a company that's doing such impressive work with AWS"
 
-## Personal Development
-"Like everyone, I have both strengths and weaknesses, and I continuously work on improving myself. To maintain clear thinking and comfortable communication:
-- Stay physically active
-- Go to the gym and swimming pool daily
-- Try to maintain an active lifestyle"
+## Personal Touch (Show Balance)
+"Outside of tech, I believe in maintaining a good work-life balance:
+- I stay active with regular gym and swimming
+- It helps me stay focused and energetic at work
+- I find it really helps with problem-solving and team communication"
