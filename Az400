@@ -1,0 +1,115 @@
+Вот собранные вопросы и ответы с изображений:
+
+---
+
+### ✅ Q1  
+**Question:**  
+Your company uses a Git repository in Azure Repos to manage the source code of a web application...  
+**Requirements:**  
+- Consolidate commit histories.  
+- Merge the changes into a single commit.  
+**Which merge strategy should you use in the branch policy?**
+
+**A.** squash merge ✅  
+**B.** fast-forward merge  
+**C.** Git fetch  
+**D.** no-fast-forward merge  
+
+---
+
+### ✅ Q2  
+**Question:**  
+You store source code in a Git repository in Azure Repos. You use a third-party CI tool to control builds. What will Azure DevOps use to authenticate with the tool?
+
+**A.** Certificate authentication  
+**B.** a personal access token (PAT) ✅  
+**C.** a Shared Access Signature (SAS) token  
+**D.** NTLM authentication  
+
+---
+
+### ✅ Q3  
+**Question:**  
+You configure Azure Application Insights and enable Smart Detection... You don’t receive a Smart Detection notification after a test failure. What prevents the notification?
+
+**A.** You must enable the Snapshot Debugger  
+**B.** Smart Detection uses the first 24 hours to establish the normal behavior of the web app ✅  
+**C.** The web app is configured to use the shared plan tier  
+**D.** You must restart the app  
+
+---
+
+### ✅ Q4  
+**Question:**  
+You need a solution for continuous inspection of the company’s code base to locate common code patterns that are problematic. What should you recommend?
+
+**A.** Microsoft Visual Studio test plans  
+**B.** Gradle wrapper scripts  
+**C.** SonarCloud analysis ✅  
+**D.** the JavaScript task runner  
+
+---
+
+### ✅ Q5 – Part 1  
+**Question:**  
+You use GitHub for source control. Documentation is stored as `.docx` and `.bmp`. You must optimize versioning and meet requirements like storing as plain text and simplifying reuse.
+
+**Convert the `.docx` files to:**  
+**A.** LaTex Typesetting (.tex)  
+**B.** Markdown (.md) ✅  
+**C.** Portable Document Format (.pdf)  
+
+---
+
+### ✅ Q5 – Part 2  
+**Convert the flow charts to:**  
+**A.** Mermaid diagrams ✅  
+**B.** PNG  
+**C.** TIFF  
+
+---
+
+### ✅ Q6  
+**Question:**  
+You need to send an SMS alert when Azure service scheduled maintenance is planned. Which two actions should you perform?
+
+**A.** Enable Azure Security Center  
+**B.** Create and configure Azure Monitor alert rule  
+**C.** Create an Azure Service Health alert ✅  
+**D.** Create and configure an action group ✅  
+
+---
+
+### ✅ Q7  
+**Question:**  
+You experience intermittent delays before a build pipeline starts in Azure Pipelines. What should you do?
+
+**A.** Enable self-hosted build agents ✅  
+**B.** Create a new agent pool  
+**C.** Split the pipeline into multiple stages  
+**D.** Purchase additional parallel job  
+
+---
+
+### ✅ Q8  
+**Question:**  
+You need an integration strategy for Java build that must use on-prem dependency management and store artifacts in Azure DevOps...  
+**Solution:** Use Microsoft-hosted agent with Visual Studio 2019 and Java Tool Installer.  
+**Does this meet the goal?**
+
+**A.** Yes  
+**B.** No ✅  
+
+---
+
+### ✅ Q9  
+**Question:**  
+You configure an Azure Application Insights availability test and create a logic app to handle email notifications. What trigger should invoke the logic app?
+
+**A.** HTTPWebhook trigger  
+**B.** HTTP trigger  
+**C.** Request trigger ✅  
+**D.** ApiConnection trigger  
+
+---
+
